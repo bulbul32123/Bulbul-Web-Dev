@@ -1,0 +1,32 @@
+/**
+* @license
+*
+* Font Family: Bevellier
+* Designed by: Arya Purohit, Barbara Bigosinska
+* URL: https://www.fontshare.com/fonts/bevellier
+* © 2025 Indian Type Foundry
+*
+* Bevellier Extralight 
+* Bevellier Light 
+
+*
+*/
+@font-face {
+  font-family: 'Bevellier-Extralight';
+  src: url('../fonts/Bevellier-Extralight.woff2') format('woff2'),
+       url('../fonts/Bevellier-Extralight.woff') format('woff'),
+       url('../fonts/Bevellier-Extralight.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Bevellier-Light';
+  src: url('../fonts/Bevellier-Light.woff2') format('woff2'),
+       url('../fonts/Bevellier-Light.woff') format('woff'),
+       url('../fonts/Bevellier-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
