@@ -5,7 +5,6 @@ import useSound from 'use-sound';
 import clickSound from '/sounds/click.MP3';
 import { useEasterEgg } from '../context/EasterEggContext';
 
-// ✅ Reusable reveal components
 import TextReveal from '../components/animations/TextReveal';
 import ParagraphReveal from '../components/animations/ParagraphReveal';
 
@@ -67,7 +66,6 @@ export default function Hero() {
     }
   };
 
-  // ✅ Close resume when clicking outside
   useEffect(() => {
     function handleOutsideClick(event) {
       if (
