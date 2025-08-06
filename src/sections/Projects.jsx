@@ -41,12 +41,10 @@ export default function Projects() {
                     className="text-6xl
                      md:text-9xl font-bold uppercase relative inline-block overflow-hidden"
                 >
-                    {/* Base Layer */}
                     <span className="text-gray-600 dark:text-gray-700 opacity-0">
                         Works
                     </span>
 
-                    {/* Overlay Reveal */}
                     <span
                         ref={titleFrontRef}
                         className="absolute top-0 left-0 text-black dark:text-white whitespace-nowrap overflow-hidden"
