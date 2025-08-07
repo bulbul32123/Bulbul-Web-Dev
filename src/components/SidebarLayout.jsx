@@ -35,33 +35,27 @@ export default function SidebarLayout({ children }) {
   const menuRef = useRef();
   const [logoClickCount, setLogoClickCount] = useState(0);
 
-  // Apply theme
   useEffect(() => {
     document.documentElement.classList.remove('light', 'dark', 'developer');
     document.documentElement.classList.add(theme);
 
-    // Save only light/dark to localStorage
     if (theme === 'light' || theme === 'dark') {
       localStorage.setItem('theme', theme);
     }
   }, [theme]);
 
-  // Handle theme click and developer unlock
   const handleThemeClick = () => {
     playClick2();
 
-    // If dev mode is unlocked, rotate all 3
     if (devUnlocked) {
       setTheme(prev =>
         prev === 'light' ? 'dark' :
           prev === 'dark' ? 'developer' : 'light'
       );
     } else {
-      // Before unlock: light <-> dark toggle
       if (theme === 'light') setTheme('dark');
       else setTheme('light');
 
-      // Count rapid clicks for hidden unlock
       setThemeClickCount(prev => {
         const newCount = prev + 1;
         if (newCount >= 5) {
@@ -91,7 +85,6 @@ export default function SidebarLayout({ children }) {
     });
   };
 
-  // Scroll bubble visibility
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -168,30 +161,3 @@ export default function SidebarLayout({ children }) {
     </>
   );
 }
-
-// edit the masktext
-
-// Day-8
-// git add src/components/SidebarLayout.jsx
-// git commit -m "Add SidebarLayout.jsx component"
-// git push origin main
-
-// Day-9
-// git add src/components/about
-// git commit -m "Add about component"
-// git push origin main
-
-// Day-10
-// git add src/components/animations
-// git commit -m "Add animations component"
-// git push origin main
-
-// Day-11
-// git add src/components/menuButtons
-// git commit -m "Add menuButtons component"
-// git push origin main
-
-// Day-12
-// git add src/components/
-// git commit -m "Add All components"
-// git push origin main
