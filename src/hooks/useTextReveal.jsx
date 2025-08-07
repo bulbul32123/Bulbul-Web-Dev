@@ -1,7 +1,5 @@
-// hooks/useTextReveal.js
 import { useEffect } from 'react';
 import gsap from 'gsap';
-// Its for Text animations
 
 export const useTextReveal = (targetRef, options = {}) => {
   useEffect(() => {
