@@ -1,4 +1,3 @@
-// hooks/useLenis.js
 import { useEffect } from "react";
 import Lenis from 'lenis';
 
@@ -23,7 +22,7 @@ export default function useLenis() {
     requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy(); // cleanup on unmount
+      lenis.destroy(); 
     };
   }, []);
 }
