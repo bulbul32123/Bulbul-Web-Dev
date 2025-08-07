@@ -1,7 +1,6 @@
 'use client'
 import { useContextApi } from "@/context/ContextApi";
 import { useRef, useEffect } from "react";
-//Hello but not working
 
 export default function MaskText({ visibleText, secretText, none }) {
     const { setHoveredText } = useContextApi();
@@ -28,4 +27,3 @@ export default function MaskText({ visibleText, secretText, none }) {
         </div>
     );
 }
-// visiable Text are not working
