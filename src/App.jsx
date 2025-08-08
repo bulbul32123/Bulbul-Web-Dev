@@ -1,14 +1,13 @@
-// App.jsx
 import React, { useState, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import useLenis from './hooks/useLenis';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
+import Curve from './components/Curve';
 import SidebarLayout from './components/SidebarLayout';
 import { EasterEggProvider } from './context/EasterEggContext';
-import { Toaster } from 'react-hot-toast';
-import Curve from './components/Curve';
-import useLenis from './hooks/useLenis';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -19,24 +18,24 @@ function AnimatedRoutes() {
 
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname) {
-      setIsLoading(true);       // Simulate loading before transition
+      setIsLoading(true);     
       const loadingTimeout = setTimeout(() => {
         setIsTransitioning(true);
-      }, 400); // Adjust loading delay as needed
+      }, 400);
 
       return () => clearTimeout(loadingTimeout);
     }
   }, [location, displayLocation]);
 
   const onTransitionComplete = () => {
-    setDisplayLocation(location); // Actually show new route
+    setDisplayLocation(location); 
     setIsTransitioning(false);
     setIsLoading(false);
   };
 
   useEffect(() => {
     if (!isTransitioning && displayLocation === null) {
-      setDisplayLocation(location); // First load case
+      setDisplayLocation(location); 
       setIsLoading(false);
     }
   }, [displayLocation, isTransitioning, location]);
