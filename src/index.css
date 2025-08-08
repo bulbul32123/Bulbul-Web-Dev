@@ -1,11 +1,17 @@
+/* =========================
+   Imports & Custom Variants
+========================= */
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* =========================
+   Root Variables
+========================= */
 :root {
   --foreground: #282829;
   --background: #f5f4f5;
   --secret-theme-bg: #262626;
-  --secret-theme-primary: #caef96; /* caf291*/
+  --secret-theme-primary: #caef96; /* caf291 */
   --secret-theme-text-1: #a4e8eb;
   --secret-theme-text-2: #ffb3db;
   --selection: #f7eb9d;
@@ -14,37 +20,40 @@
 @theme {
   --breakpoint-xmd: 30rem;
   --breakpoint-Smd: 30rem;
+  --breakpoint-XMD: 800px;
 }
+
+/* =========================
+   Font Faces
+========================= */
 @font-face {
   font-family: 'Space';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Light.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'SpaceMedium';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Medium.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'SpaceRegular';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'SpaceSemiBold';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'SwitzerExtraBold';
   src: url('/fonts/Switzer/Fonts/WEB/fonts/Switzer-Extrabold.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'SwitzerBold';
   src: url('/fonts/Switzer/Fonts/WEB/fonts/Switzer-Bold.ttf') format('truetype');
 }
 
+/* =========================
+   Theme Variations
+========================= */
 .dark {
   --foreground: #f0f0f0;
   --background: #121212;
@@ -65,35 +74,18 @@
   --selection: #ffb3ec;
 }
 
-
-
-
+/* =========================
+   Base Elements
+========================= */
 body {
   @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-600;
 }
 
-@layer utilities {
-  @media (min-width: 1536px) {
-    .fixed-sidebar-left {
-      left: calc((100vw - 1300px) / 2);
-    }
-    .fixed-sidebar-right {
-      right: calc((100vw - 1300px) / 2);
-    }
-  }
-
-}
-@theme {
-  --breakpoint-XMD: 800px;
-}
-
-h1,
-h2 {
+h1, h2 {
   font-family: "SwitzerExtraBold";
 }
 
-h3,
-h4 {
+h3, h4 {
   font-family: "SwitzerBold";
 }
 
@@ -117,13 +109,30 @@ li {
   font-family: "SpaceMedium";
 }
 
+/* =========================
+   Utilities
+========================= */
+@layer utilities {
+  @media (min-width: 1536px) {
+    .fixed-sidebar-left {
+      left: calc((100vw - 1300px) / 2);
+    }
+    .fixed-sidebar-right {
+      right: calc((100vw - 1300px) / 2);
+    }
+  }
+}
+
+/* =========================
+   Text Highlights
+========================= */
 .highlighted-text {
   background-image: url('/icons/highLight.svg');
   background-position: 50% 34%;
-  padding-left: 70px;
-  padding-right: 70px;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 
 .highlightedUnderLine-text::after {
@@ -140,63 +149,17 @@ li {
   right: -10px;
 }
 
+/* =========================
+   Menu
+========================= */
 .menu {
   mix-blend-mode: difference;
   height: 100%;
 }
 
-.cta-bubble.is-visible {
-  animation: bubble 0.5s ease-in-out forwards;
-}
-
-.cta-bubble.is-hidden {
-  animation: bubbleReverse 0.5s ease-in-out forwards;
-}
-
-@keyframes bubble {
-  0% {
-    transform: scale(0);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  70% {
-    transform: scale(0.9);
-  }
-
-  90% {
-    transform: scale(1.05);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes bubbleReverse {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  70% {
-    transform: scale(0.9);
-  }
-
-  90% {
-    transform: scale(1.05);
-  }
-
-  100% {
-    transform: scale(0);
-  }
-}
-
+/* =========================
+   Call-to-Action Bubble
+========================= */
 .cta-bubble {
   bottom: -90px;
   display: block;
@@ -208,6 +171,14 @@ li {
   transition: opacity .6s ease-out;
   width: 200px;
   z-index: 9999;
+}
+
+.cta-bubble.is-visible {
+  animation: bubble 0.5s ease-in-out forwards;
+}
+
+.cta-bubble.is-hidden {
+  animation: bubbleReverse 0.5s ease-in-out forwards;
 }
 
 .cta-bubble .bubble-icon {
@@ -231,7 +202,7 @@ li {
   text-transform: uppercase;
 }
 
-.cta-bubble>a {
+.cta-bubble > a {
   align-items: flex-start;
   background-color: #caf291;
   border-radius: 50%;
@@ -246,34 +217,51 @@ li {
   width: 100%;
 }
 
+/* =========================
+   Animations
+========================= */
+@keyframes bubble {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  70% { transform: scale(0.9); }
+  90% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 
+@keyframes bubbleReverse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  70% { transform: scale(0.9); }
+  90% { transform: scale(1.05); }
+  100% { transform: scale(0); }
+}
+
+/* =========================
+   Mask & Cursor Effects
+========================= */
 .maskText {
   mix-blend-mode: difference;
   position: relative;
   z-index: 10;
 }
 
-
 .cursorDiv {
   height: 100%;
   width: 100%;
   display: block;
+}
 
-  .mask,
-  .body {
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: darken;
-    color: black;
-    cursor: default;
+.cursorDiv .mask,
+.cursorDiv .body {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: darken;
+  color: black;
+  cursor: default;
+}
 
-  }
-
-
-
-  .mask p {
-    display: inline;
-  }
+.cursorDiv .mask p {
+  display: inline;
 }
 
 .visible .body {
@@ -286,24 +274,24 @@ li {
   color: #ec4e39;
 }
 
-
 .mask {
   mask-image: url('../../public/images/mask.svg');
   mask-repeat: no-repeat;
-  mix-blend-mode: difference;
   mask-size: 40px;
   background: #ec4e39;
+  mix-blend-mode: difference;
   position: absolute;
   color: black;
 }
 
-
+/* =========================
+   Buttons & Keys
+========================= */
 .button {
   border: 1px solid currentColor;
   border-radius: 5px;
   display: inline-block;
   padding: 0.8em;
-
   appearance: none;
   cursor: pointer;
   font-family: inherit;
@@ -321,6 +309,26 @@ li {
   transition-duration: 0.07s;
 }
 
+.key {
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0.8em;
+  border-color: white;
+  color: white;
+}
+
+.key--arrow {
+  font-size: 1.8rem;
+  padding: 0.35em 0.1em 0.6em;
+  position: relative;
+  line-height: 0.3;
+  top: 0.05em;
+}
+
+/* =========================
+   Dialogue & HUD
+========================= */
 .dialogue {
   align-items: center;
   bottom: 0;
@@ -345,24 +353,6 @@ li {
   padding: 18px;
 }
 
-.key {
-  border: 1px solid currentColor;
-  border-radius: 5px;
-  display: inline-block;
-  padding: 0.8em;
-
-  border-color: white;
-  color: white;
-}
-
-.key--arrow {
-  font-size: 1.8rem;
-  padding: 0.35em 0.1em 0.6em;
-  position: relative;
-  line-height: 0.3;
-  top: 0.05em;
-}
-
 .hud {
   box-sizing: border-box;
   display: flex;
@@ -385,17 +375,15 @@ li {
   margin: 0;
 }
 
-
-
+/* =========================
+   Indicators & Curve
+========================= */
 .indicator-line {
   background-color: black;
   height: 2rem;
   transform: scaleY(.2);
   width: 1px;
 }
-
-
-
 
 .curve svg,
 .curve .background {
@@ -424,8 +412,9 @@ li {
   text-align: center;
 }
 
-
-/* Avatar */
+/* =========================
+   Avatar
+========================= */
 .expand-icon {
   display: none;
 }
@@ -434,9 +423,9 @@ li {
   display: inline;
 }
 
-
-
-
+/* =========================
+   Container Hover Effect
+========================= */
 .containere {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -478,8 +467,9 @@ p.p {
   transition: 0.3s;
 }
 
-
-
+/* =========================
+   Tech Stack
+========================= */
 .tech-stack-label {
   font-size: 0.9rem;
   color: #ccc;
@@ -505,7 +495,6 @@ p.p {
   position: relative;
   overflow: hidden;
 }
-
 
 .tech-icon svg {
   width: 40px;
