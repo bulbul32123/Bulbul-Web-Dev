@@ -67,7 +67,6 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
     }
 
     function createEnemy(text) {
-      // Start with smaller font size for mobile
       let fontSize = window.innerWidth < 768 ? 30 : 50;
       ctx.font = `${fontSize}px monospace`;
       let textWidth = ctx.measureText(text).width;
@@ -111,7 +110,7 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
       if (ship.active && ship.shooting && (laserTickRef.current === 0 || laserTickRef.current % 10 === 0)) {
         if (lasersRef.current.length < 50) {
           lasersRef.current.push(createLaser(ship.x + ship.radius - 3));
-          playShoot();  // 👉 Play shooting sound
+          playShoot(); 
         }
       }
 
@@ -153,7 +152,7 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
             speedMultiplierRef.current += 0.025;
             scoreRefVar.current += 100;
             if (scoreRef.current) scoreRef.current.textContent = scoreRefVar.current;
-            playHit();  // 👉 Play hit sound
+            playHit();  
           }
         });
 
@@ -181,7 +180,7 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
     }
 
     function startGame() {
-      if (playingRef.current) return; // prevent multiple loops
+      if (playingRef.current) return; 
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight * 0.75;
       shipRef.current = createShip();
@@ -225,7 +224,6 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
       canvas.height = window.innerHeight * 0.75;
     });
 
-    // Start the game when the button is clicked
     if (gameStarted) {
       startGame();
     }
@@ -233,11 +231,10 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
-      playingRef.current = false; // stop game loop on unmount
+      playingRef.current = false;
     };
   }, [gameStarted]);
 
-  // Mobile control functions
   const handleMobileLeft = (pressed) => {
     const ship = shipRef.current;
     if (!ship || !ship.active) return;
@@ -323,9 +320,7 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
               <canvas ref={canvasRef} className="relative w-full h-full rounded-2xl md:rounded-4xl"></canvas>
               <li className='absolute top-4 left-4 list-none'>Score: <span ref={scoreRef}>0</span></li>
 
-              {/* Mobile Controls - Only show on touch devices */}
               <div className="md:hidden absolute bottom-4 left-0 right-0 flex justify-center items-center space-x-4 px-4">
-                {/* Left Movement Button */}
                 <button
                   onTouchStart={() => handleMobileLeft(true)}
                   onTouchEnd={() => handleMobileLeft(false)}
@@ -337,7 +332,6 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
                   <ChevronLeft size={24} className="text-white" />
                 </button>
 
-                {/* Shoot Button */}
                 <button
                   onTouchStart={() => handleMobileShoot(true)}
                   onTouchEnd={() => handleMobileShoot(false)}
