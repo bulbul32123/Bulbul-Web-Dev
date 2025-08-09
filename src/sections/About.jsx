@@ -93,7 +93,7 @@ export default function About() {
             end: '+=100%',
             scrub: true,
             pin: true,
-            pinSpacing: true, // Ensure proper spacing after pin
+            pinSpacing: true, 
             anticipatePin: 1,
             refreshPriority: 1 
           },
@@ -172,30 +172,29 @@ export default function About() {
                 trigger: box,
                 start: 'top 85%',
                 toggleActions: 'play none none reverse',
-                refreshPriority: 0 // Lower priority
+                refreshPriority: 0 
               },
               delay: i * 0.1,
             }
           );
         });
 
-        // Cleanup function to revert SplitType
+      
         return () => {
           paraSplit1.revert();
           paraSplit2.revert();
         };
       }, sectionRef);
 
-      // Return cleanup function
+      
       return () => {
         ctx.revert();
       };
-    }, 1000); // wait 1 second for Hero to fully play
+    }, 1000); 
 
     return () => clearTimeout(timer);
   }, []);
 
-  // Refresh ScrollTrigger when component mounts/unmounts
   useEffect(() => {
     return () => {
       ScrollTrigger.refresh();
@@ -205,7 +204,6 @@ export default function About() {
   return (
     <>
       <div className="w-full h-full -mt-28 xl:-mt-20 relative">
-        {/* Pinned Section */}
         <AboutText sectionRef={sectionRef} boxRef={boxRef} textRef={textRef} titleRef={titleRef} titleFrontRef={titleFrontRef} para1Ref={para1Ref} para2Ref={para2Ref} />
       </div>
 
