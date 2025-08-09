@@ -46,14 +46,12 @@ export default function Card({ data }) {
     return (
         <div ref={cardRef} className="w-full group flex flex-col items-center border-x border-b border-gray-300 dark:border-white/20 px-4 py-10 lg:py-20">
             <Link to={link}>
-                {/* Title Animation */}
                 <div className="overflow-hidden">
                     <div ref={textRef}>
                         <h2 className="mb-2 text-2xl font-bold uppercase">{title}</h2>
                     </div>
                 </div>
 
-                {/* Image Animation */}
                 <div className="overflow-hidden">
                     <div ref={imgRef}>
                         <div className="relative overflow-hidden scale-100 w-full">
@@ -70,7 +68,6 @@ export default function Card({ data }) {
                     </div>
                 </div>
 
-                {/* Tech stack and status */}
                 <div className="flex justify-between space-x-2">
                     <div>
                         <div className="tech-stack mt-2" ref={stackRef}>
