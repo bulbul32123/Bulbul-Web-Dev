@@ -1,4 +1,3 @@
-'use client'
 import { motion } from 'framer-motion';
 import useMousePosition from './useMousePosition';
 import { useContextApi } from '@/context/ContextApi';
@@ -16,12 +15,11 @@ export default function CursorEffect() {
     const showCursor = !isPointerTarget(hoveredElement);
     const size = hoveredText
         ? hoveredText.none
-            ? 30  // if hoveredText exists AND hoveredText.none is true
-            : 300 // if hoveredText exists AND hoveredText.none is false
-        : 40;   // if no hoveredText at all
+            ? 30 
+            : 300 
+        : 40;  
 
 
-    // Get text data (if available)
     const ref = hoveredText?.ref?.current;
     const text = hoveredText?.text || '';
     const rect = ref?.getBoundingClientRect();
@@ -31,7 +29,6 @@ export default function CursorEffect() {
 
     return (
         <div className="cursorDiv pointer-events-none fixed inset-0 z-50">
-            {/* Cursor-following mask */}
             <motion.div
                 className="mask"
                 animate={{
@@ -39,7 +36,7 @@ export default function CursorEffect() {
                     WebkitMaskSize: `${size}px ${size}px`,
                     maskPosition: `${x - size / 2}px ${y - size / 2}px`,
                     maskSize: `${size}px ${size}px`,
-                    opacity: showCursor ? 1 : 0, // 👈 hide mask on links/buttons
+                    opacity: showCursor ? 1 : 0, 
                 }}
                 transition={{ type: 'tween', ease: 'backOut', duration: 0.4 }}
             >
