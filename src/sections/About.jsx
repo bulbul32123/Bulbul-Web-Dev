@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AboutText from '../components/about/AboutText';
 import GridBox from '../components/about/GridBox';
 import { GRID_BOX_DATA } from '../components/about/gridData';
+import TechStacks from './TechStacks';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -206,6 +207,8 @@ export default function About() {
       <div className="w-full h-full -mt-28 xl:-mt-20 relative">
         <AboutText sectionRef={sectionRef} boxRef={boxRef} textRef={textRef} titleRef={titleRef} titleFrontRef={titleFrontRef} para1Ref={para1Ref} para2Ref={para2Ref} />
       </div>
+      <div className="">
+      </div>
 
       <GridBox
         gridBgRef={gridBgRef}
@@ -216,6 +219,7 @@ export default function About() {
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}
       />
+      <TechStacks />
     </>
   );
 }
