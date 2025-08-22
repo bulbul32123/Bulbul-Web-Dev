@@ -1,85 +1,3 @@
-// export const projectData = [
-//     {
-//         id: 0,
-//         title: 'Movix',
-//         desc: 'Millons of Movies,Tv shows and people to Discover. With Advance functionalitys. Explore now.',
-//         category: 'movie',
-//         link: 'https://advancemovieapp.netlify.app/',
-//         imgSrc: '/images/project-1.webp',
-//         gitLink: 'https://github.com/bulbul32123/Movie-APP-With-React'
-//     },
-//     {
-//         id: 75675,
-//         title: "Online Ekart Store",
-//         desc: 'Expertly designed goods for workspace, home, and travel. Shop the best products from EKart',
-//         category: 'e-commerce',
-//         link: 'https://ekart-frontend-mu.vercel.app/',
-//         imgSrc: '/images/project-2.webp',
-//         gitLink: 'https://github.com/bulbul32123/Ekart-Store-Frontend'
-//     },
-//     {
-//         id: 99,
-//         title: "Youtube",
-//         desc: 'Build a social media Website Using React and Tailwidcss. Like Youtube. Now i have Clone the Youtube.',
-//         category: 'clone',
-//         link: 'https://youtubeclonewithreactjs.netlify.app/',
-//         imgSrc: '/images/project-3.webp',
-//         gitLink: 'https://github.com/bulbul32123/Youtube-Clone'
-//     },
-//     {
-//         id: 234,
-//         title: 'Google Searcher',
-//         desc: 'Search what you want.',
-//         category: 'clone',
-//         link: 'https://google-searcher.netlify.app/',
-//         imgSrc: '/images/project-4.webp',
-//         gitLink: 'https://github.com/bulbul32123/Google-Search-App'
-//     },
-//     {
-//         id: 2342344,
-//         title: 'E-Bike Store',
-//         desc: `let’s Ride the FUTURE. Clean Ui with Modern Theme. Simple and sleek design with users in mind.`,
-//         link: 'https://e-bike-store.netlify.app/',
-//         imgSrc: '/images/project-5.webp',
-//         category: 'e-commerce',
-//         gitLink: 'https://github.com/bulbul32123/E---Bike-Store'
-//     },
-//     {
-//         id: 144545564,
-//         title: 'Dev Easy',
-//         desc: 'A stand-alone browser and devtool for ambitious web developers that want to build more responsive, accessible and performant sites in less time. Save hours on each project, love every minute of it.',
-//         link: 'https://deveasy.netlify.app/',
-//         imgSrc: '/images/project-6.webp',
-//         category: 'Custom',
-//         gitLink: 'https://github.com/bulbul32123/Dev-Easy---with-Reactjs'
-//     },
-// {
-//   id: 199,
-//   title: 'Foods For Foodies',
-//   desc: 'Different Spices For The Different Tastes.',
-//   category: 'resturant',
-//   link: 'https://foodforhummans.netlify.app/',
-//   imgSrc: '/images/tastyfood.webp',
-//   gitLink: 'https://github.com/bulbul32123/BestFoods/tree/main/food%20website'
-// },
-// {
-//   id: 39,
-//   title: "Foodi",
-//   desc: 'Dive into Delights Of Delectable Food. Where Each Plate Weaves a Story of Culinary Mastery and Passionate Craftsmanship',
-//   category: 'resturant',
-//   link: 'https://foodwithfoodi.netlify.app/',
-//   imgSrc: '/images/foodi.webp',
-//   gitLink: 'https://github.com/bulbul32123/Modern-Ui-Resturant-Webiste'
-// },
-// {
-//   id: 144,
-//   title: 'Tasty Foods',
-//   desc: 'Try the best food of the week.',
-//   category: 'resturant',
-//   link: 'https://tasteyourfood.netlify.app/',
-//   imgSrc: '/images/foodsforfoodies.webp',
-//   gitLink: 'https://github.com/bulbul32123/Food--website/tree/main/Food%20-%20Website'
-// },
 import React from 'react';
 import NextIcon from "../../public/icons/techStacks/NextIcon";
 import ReactIcon from "../../public/icons/techStacks/React";
@@ -89,15 +7,8 @@ import TailwindIcon from "../../public/icons/techStacks/Tailwind";
 import StrapiIcon from "../../public/icons/techStacks/Strapi";
 import StripeIcon from "../../public/icons/techStacks/Stripe";
 import FigmaIcon from "../../public/icons/techStacks/Figma";
-import GsapIcon from "../../public/icons/techStacks/Gsap";
-import CssIcon from "../../public/icons/techStacks/Css";
-import NodejsIcon from "../../public/icons/techStacks/Nodejs";
-import MongoDbIcon from "../../public/icons/techStacks/MongoDb";
-import ExpressIcon from "../../public/icons/techStacks/Express";
 import FramerMotionIcon from "../../public/icons/techStacks/FramerMotion";
-import HtmlIcon from "../../public/icons/techStacks/Html";
 
-// ]
 export const projectData = [
   {
     id: 0,
