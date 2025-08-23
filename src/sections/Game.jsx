@@ -104,7 +104,6 @@ export default function Game() {
                   className="grid grid-cols-3 gap-6 mb-8"
                 >
                   <motion.div
-                    whileHover={{ scale: 1.05, y: -5 }}
                     className="bg-gray-800/50 rounded-xl p-6 text-center backdrop-blur-sm border border-gray-700/50"
                   >
                     <div className="text-3xl font-bold text-yellow-400 mb-2">10</div>
@@ -112,7 +111,6 @@ export default function Game() {
                   </motion.div>
 
                   <motion.div
-                    whileHover={{ scale: 1.05, y: -5 }}
                     className="bg-gray-800/50 rounded-xl p-6 text-center backdrop-blur-sm border border-gray-700/50"
                   >
                     <div className="text-3xl font-bold text-cyan-400 mb-2">∞</div>
@@ -120,7 +118,6 @@ export default function Game() {
                   </motion.div>
 
                   <motion.div
-                    whileHover={{ scale: 1.05, y: -5 }}
                     className="bg-gray-800/50 rounded-xl p-6 text-center backdrop-blur-sm border border-gray-700/50"
                   >
                     <div className="text-3xl font-bold text-green-400 mb-2">1</div>
