@@ -23,7 +23,6 @@ export default function Game() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white relative overflow-hidden">
-      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
@@ -34,7 +33,6 @@ export default function Game() {
     
       <main className="relative z-10 px-6 pt-12 pb-20">
         <div className="max-w-7xl mx-auto">
-          {/* Title Section */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -71,7 +69,6 @@ export default function Game() {
             </motion.p>
           </motion.div>
 
-          {/* Game Section */}
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -79,7 +76,6 @@ export default function Game() {
             className="bg-gray-900 dark:bg-gray-800 rounded-3xl p-8 md:p-12 text-white"
           >
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Content */}
               <div>
                 <motion.h2
                   initial={{ x: -50, opacity: 0 }}
@@ -101,7 +97,6 @@ export default function Game() {
                   the ultimate code cleaner?
                 </motion.p>
 
-                {/* Stats */}
                 <motion.div
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -133,7 +128,6 @@ export default function Game() {
                   </motion.div>
                 </motion.div>
 
-                {/* Start Button */}
                 <motion.button
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -151,7 +145,6 @@ export default function Game() {
                 </motion.button>
               </div>
 
-              {/* Right Content - Code Preview */}
               <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -199,7 +192,6 @@ export default function Game() {
         </div>
       </main>
 
-      {/* Game Modal */}
       <AnimatePresence>
         {showGame && (
           <SpaceGame onClose={closeGame} setShowCelebration={setShowCelebration} />
