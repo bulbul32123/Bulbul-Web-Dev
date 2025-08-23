@@ -5,7 +5,6 @@ import { techStacks } from "../utils/TechStacks";
 const TechStacks = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
-    // Group tech stacks by category
     const groupedTechStacks = techStacks.reduce((acc, tech, index) => {
         if (!acc[tech.category]) {
             acc[tech.category] = [];
@@ -50,7 +49,6 @@ const TechStacks = () => {
         }
     };
 
-    // Define special sizing for important techs
     const getIconSize = (techName) => {
         const sizeMap = {
             'React': '80%',
@@ -74,7 +72,6 @@ const TechStacks = () => {
         return tech.featured ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1';
     };
 
-    // Render individual tech item
     const renderTechItem = (tech, globalIndex) => (
         <motion.div
             key={`${tech.category}-${tech.name}`}
@@ -83,7 +80,6 @@ const TechStacks = () => {
             onMouseEnter={() => setHoveredIndex(globalIndex)}
             onMouseLeave={() => setHoveredIndex(null)}
         >
-            {/* Sliding Background */}
             <motion.div
                 className="absolute inset-0 bg-black dark:bg-white rounded-2xl"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -99,7 +95,6 @@ const TechStacks = () => {
                 }}
             />
 
-            {/* Content Container */}
             <motion.div
                 className={`
                     relative z-10 p-6 rounded-2xl border-2 border-gray-200 dark:border-gray-700
@@ -120,7 +115,6 @@ const TechStacks = () => {
                     stiffness: 300
                 }}
             >
-                {/* Icon */}
                 <motion.div
                     animate={{
                         scale: hoveredIndex === globalIndex ? 1.1 : 1,
@@ -133,7 +127,6 @@ const TechStacks = () => {
                     }}
                     className="flex flex-col items-center justify-center w-full h-full"
                 >
-                    {/* Icon Container with Custom Sizing */}
                     <div
                         className="flex items-center justify-center"
                         style={{
@@ -148,7 +141,6 @@ const TechStacks = () => {
                         </div>
                     </div>
 
-                    {/* Tech Name */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{
@@ -167,7 +159,6 @@ const TechStacks = () => {
                 </motion.div>
             </motion.div>
 
-            {/* Enhanced Glow Effect for Important Techs */}
             <motion.div
                 className={`absolute inset-0 rounded-2xl blur-xl ${['React', 'Next.js', 'Tailwind CSS'].includes(tech.name)
                     ? 'bg-gradient-to-r from-blue-500/30 to-purple-500/30'
@@ -185,7 +176,6 @@ const TechStacks = () => {
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 py-20 px-6 relative overflow-hidden">
-            {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
@@ -194,7 +184,6 @@ const TechStacks = () => {
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                {/* Title */}
                 <motion.h2
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -205,11 +194,9 @@ const TechStacks = () => {
                     TECH STACK
                 </motion.h2>
 
-                {/* Categories */}
                 <div className="space-y-16">
                     {Object.entries(groupedTechStacks).map(([category, techs], categoryIndex) => {
                         let globalIndex = 0;
-                        // Calculate global index for this category
                         for (let i = 0; i < categoryIndex; i++) {
                             const prevCategory = Object.keys(groupedTechStacks)[i];
                             globalIndex += groupedTechStacks[prevCategory].length;
@@ -223,7 +210,6 @@ const TechStacks = () => {
                                 animate="visible"
                                 className="mb-16"
                             >
-                                {/* Category Title */}
                                 <motion.h3
                                     variants={itemVariants}
                                     className="text-2xl md:text-3xl font-bold uppercase tracking-wide mb-8 text-gray-900 dark:text-white"
@@ -231,7 +217,6 @@ const TechStacks = () => {
                                     {category}
                                 </motion.h3>
 
-                                {/* Bento Grid for Category */}
                                 <motion.div
                                     variants={containerVariants}
                                     className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 auto-rows-fr"
@@ -246,7 +231,6 @@ const TechStacks = () => {
                     })}
                 </div>
 
-                {/* Floating Elements */}
                 <div className="absolute top-1/2 left-10 opacity-10">
                     <motion.div
                         animate={{
