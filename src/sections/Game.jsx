@@ -64,8 +64,8 @@ export default function Game() {
               transition={{ duration: 0.6, delay: 0.9 }}
               className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl"
             >
-              An interactive space shooter where you eliminate bad coding practices. and
-              this is how i clean and optimize my code.
+              An interactive space shooter game where you eliminate bad coding practices.
+              And this is how i clean and optimize my code.
             </motion.p>
           </motion.div>
 
