@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AboutText from '../components/about/AboutText';
 import GridBox from '../components/about/GridBox';
 import { GRID_BOX_DATA } from '../components/about/gridData';
-import TechStacks from './TechStacks';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -219,7 +218,6 @@ export default function About() {
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}
       />
-      <TechStacks />
     </>
   );
 }
