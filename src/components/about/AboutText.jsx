@@ -1,7 +1,6 @@
 
 // components/about/AboutText.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const AboutText = ({ sectionRef, boxRef, textRef, titleRef, titleFrontRef, para1Ref, para2Ref }) => {
   return (
@@ -37,12 +36,12 @@ const AboutText = ({ sectionRef, boxRef, textRef, titleRef, titleFrontRef, para1
               With 4+ years of experience and 80+ completed projects, I specialize in both frontend 
               (React.js, Next.js, TailwindCSS) and backend (Node.js, Express, MongoDB) development. 
               I bring creative ideas to life with clean code and micro interactions.
-              <Link 
-                to={'/aboutMe'} 
+              <a target='_blank'
+              href="/Bulbul'sResume.pdf"
                 className="py-4 px-7 rounded-full bg-white dark:bg-black hover:bg-black hover:text-white text-black dark:text-white mt-4 ml-3 inline-block up"
               >
-                About Me
-              </Link>
+                Resume 
+              </a>
             </p>
           </div>
         </div>
