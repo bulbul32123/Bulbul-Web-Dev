@@ -1,5 +1,3 @@
-
-// components/about/AboutText.jsx
 import React from 'react';
 
 const AboutText = ({ sectionRef, boxRef, textRef, titleRef, titleFrontRef, para1Ref, para2Ref }) => {
@@ -51,6 +49,3 @@ const AboutText = ({ sectionRef, boxRef, textRef, titleRef, titleFrontRef, para1
 };
 
 export default AboutText;
-
-
-// 1154
