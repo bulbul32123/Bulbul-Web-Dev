@@ -22,7 +22,7 @@ export default function GameTitle() {
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: title2Ref.current,
-                            start: "top 105%", // animate when 85% into viewport
+                            start: "top 105%", 
                             toggleActions: "play none none reverse",
                         },
                     }
@@ -45,7 +45,7 @@ export default function GameTitle() {
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: titleRef.current,
-                            start: "top 100%", // animate when 85% into viewport
+                            start: "top 100%",
                             toggleActions: "play none none reverse",
                         },
                     }
@@ -62,12 +62,10 @@ export default function GameTitle() {
                 ref={titleRef}
                 className="text-6xl md:text-8xl font-bold uppercase relative flex flex-wrap overflow-hidden"
             >
-                {/* Back layer (grey, invisible initially) */}
                 <span className="dark:text-white text-black opacity-0">
                     How I cleanup
                 </span>
 
-                {/* Front layer (animated reveal) */}
                 <span
                     ref={titleFrontRef}
                     className="absolute top-0 left-0 dark:text-white text-black whitespace-nowrap overflow-hidden"
@@ -80,12 +78,10 @@ export default function GameTitle() {
                 ref={title2Ref}
                 className="text-6xl md:text-8xl font-bold uppercase relative flex flex-wrap overflow-hidden"
             >
-                {/* Back layer (grey, invisible initially) */}
                 <span className="dark:text-white text-black opacity-0">
                     my code
                 </span>
 
-                {/* Front layer (animated reveal) */}
                 <span
                     ref={titleFront2Ref}
                     className="absolute top-0 left-0 dark:text-white text-black whitespace-nowrap overflow-hidden"
