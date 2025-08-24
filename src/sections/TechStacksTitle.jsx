@@ -20,7 +20,7 @@ export default function TechStacksTitle() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: titleRef.current,
-              start: "top 85%", // animate when 85% into viewport
+              start: "top 85%",
               toggleActions: "play none none reverse",
             },
           }
@@ -37,12 +37,10 @@ export default function TechStacksTitle() {
         ref={titleRef}
         className="text-6xl md:text-9xl font-bold uppercase relative inline-block overflow-hidden"
       >
-        {/* Back layer (grey, invisible initially) */}
         <span className="dark:text-gray-600 text-gray-700 opacity-0">
           tech stacks
         </span>
 
-        {/* Front layer (animated reveal) */}
         <span
           ref={titleFrontRef}
           className="absolute top-0 left-0 dark:text-black text-white whitespace-nowrap overflow-hidden"
