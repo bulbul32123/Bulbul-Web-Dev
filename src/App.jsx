@@ -3,7 +3,6 @@ import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import useLenis from './hooks/useLenis';
 import Home from './pages/Home';
-import About from './pages/About';
 import Projects from './pages/Projects';
 import Curve from './components/Curve';
 import SidebarLayout from './components/SidebarLayout';
@@ -47,7 +46,6 @@ function AnimatedRoutes() {
         <SidebarLayout>
           <Routes location={displayLocation}>
             <Route path="/" element={<Home />} />
-            <Route path="/aboutMe" element={<About />} />
             <Route path="/project" element={<Projects />} />
           </Routes>
         </SidebarLayout>
