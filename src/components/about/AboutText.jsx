@@ -26,7 +26,7 @@ const AboutText = ({ sectionRef, boxRef, textRef, titleRef, titleFrontRef, para1
             
             <p ref={para1Ref} className="w-full md:w-[35rem] text-2xl md:text-3xl ml-2 mt-2 sm:mt-5 max-md:mb-5 md:ml-4 para dark:text-gray-600">
               I'm Bulbul Islam — a fullstack developer who builds fast, clean, and user-focused websites. 
-              From high-converting landing pages and ecommerce stores to AI-powered SaaS platforms, 
+              From high-converting landing pages and e-commerce stores to AI-powered SaaS platforms, 
               I turn ideas into powerful web experiences that solve real-world problems.
             </p>
 
