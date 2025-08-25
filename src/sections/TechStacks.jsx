@@ -62,7 +62,6 @@ export default function TechStacks() {
         important.includes(tech.name) || tech.featured ? "col-span-2 row-span-2" : "col-span-1 row-span-1";
 
     const renderTechItem = (tech, globalIndex) => {
-        // Support both element and component in your data
         const IconEl = React.isValidElement(tech.icon) ? tech.icon : React.createElement(tech.icon || "div");
 
         return (
