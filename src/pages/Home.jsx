@@ -4,22 +4,25 @@ import Hero from "../sections/Hero";
 import TechStacks from "../sections/TechStacks";
 import Projects from "../sections/Projects";
 import Game from "../sections/Game";
+import Services from "../sections/Service/Service";
 
 export default function Home() {
   return (
     <div className="">
       <div className="h-full w-full">
-        <Hero />
+        {/* <Hero /> */}
         <div className="w-full h-full">
-          <About />
-          <TechStacks />
+          {/* <About /> */}
+          {/* <TechStacks /> */}
         </div>
         <div className="h-full w-full">
-          <Projects />
+          {/* <Projects /> */}
         </div>
         <div className="h-full w-full relative">
-          <Game />
+          {/* <Game /> */}
+          <Services />
         </div>
+
       </div>
     </div>
   );
