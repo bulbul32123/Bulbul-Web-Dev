@@ -416,6 +416,7 @@ li {
    Avatar
 ========================= */
 .expand-icon {
+  background: #525252;
   display: none;
 }
 
