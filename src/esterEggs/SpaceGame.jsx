@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import useSound from 'use-sound';
 import { useEasterEgg } from '../context/EasterEggContext';
 import eggSound from '/sounds/succes.MP3';
-import Celebration from '../components/Celebration';
 
 const BAD_PRACTICES = [
   'Bad UI', 'Low Performance', 'Heavy Code', 'Bad UX',
@@ -168,11 +167,12 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
 
       if (destroyedTextsRef.current.size === BAD_PRACTICES.length && enemiesRef.current.length === 0) {
         playingRef.current = false;
-        setGameStarted(false);
+        setShowCelebration(true)
+        console.log("show celebration true");
+        setGameStarted(true);
         addEasterEgg("egg-completed-game", `You just completed the game`);
         play()
         onClose(false)
-        setShowCelebration(true)
         return;
       }
 
