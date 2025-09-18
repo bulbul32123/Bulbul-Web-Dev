@@ -86,7 +86,7 @@ export const techStacks = [
         )
     },
     {
-        name: "MongoDb",
+        name: "MongoDB",
         category: 'tech',
         icon: (
             <svg className="w-20 h-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
