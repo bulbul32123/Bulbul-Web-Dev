@@ -2,7 +2,7 @@ import React from 'react'
 
 const StripeIcon = () => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.87 28.87" id="stripe">
+        <svg xmlns="http://www.w3.org/2000/svg"  stroke="currentColor" viewBox="0 0 28.87 28.87" id="stripe">
             <g id="Layer_2">
                 <g id="Layer_1-2">
                     <rect width="28.87" height="28.87" rx="6.48" ry="6.48" style={{ fill: "#6772e5" }}></rect>

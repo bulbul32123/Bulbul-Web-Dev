@@ -2,7 +2,7 @@ import React from 'react'
 
 const HtmlIcon = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100"><path fill="#767676" d="M14 90 6 0h88.2l-8 90L50 100"/><path fill="#888" d="M50.1 92.3v-85h36l-6.9 76.8"/><path fill="#EBEBEB" d="M22.4 18.4h27.7v11H34.5l1 11.3h14.6v11H25.4zm3.5 38.9H37l.8 8.8 12.3 3.3v11.5l-22.7-6.3"/><path fill="#fff" d="M77.7 18.4H50v11h26.6zm-2 22.3H50v11h13.6L62.3 66 50 69.4v11.5l22.6-6.3"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="h-16 w-16" viewBox="0 0 100 100"><path fill="#E44D26" d="M14.021 90.034 6 0h88.187l-8.022 89.985L50.02 100" /><path fill="#F16529" d="M50.093 92.344V7.39h36.048l-6.88 76.811" /><path fill="#EBEBEB" d="M22.383 18.4h27.71v11.036H34.488L35.51 40.74h14.584v11.01H25.397zm3.5 38.893h11.084l.778 8.823 12.348 3.306v11.521l-22.654-6.32" /><path fill="#fff" d="M77.706 18.4H50.044v11.036h26.64zm-2.018 22.34H50.044v11.035h13.612l-1.288 14.341-12.324 3.306v11.473l22.606-6.271" /></svg>
   )
 }
 
