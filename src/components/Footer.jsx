@@ -9,10 +9,10 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 export default function Footer() {
     const [copied, setCopied] = useState(false);
 
+
     const scrollToTop = () => {
         scroll.scrollToTop({ duration: 500, smooth: true });
     };
-
     const copyEmail = () => {
         navigator.clipboard.writeText('alejandromejias.work@gmail.com');
         setCopied(true);
@@ -129,7 +129,7 @@ export default function Footer() {
                     Quick Links
                 </motion.span>
 
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-8 !text-black dark:!text-white">
                     {quickLinks.map((link, i) => (
                         <Link
                             key={i}
