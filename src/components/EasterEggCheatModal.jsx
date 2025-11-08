@@ -1,134 +1,179 @@
-import React, { useState, useEffect } from "react";
-import { IoClose } from "react-icons/io5";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "../components/ui/alert-dialog";
+import React, { useEffect, useState, useRef } from "react";
+import { IoClose, IoChevronDown, IoChevronUp } from "react-icons/io5";
 
-const EasterEggCheatModal = ({ isOpen, onClose, onUnlock }) => {
+const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = false }) => {
   const [showCheatCodes, setShowCheatCodes] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [showUpArrow, setShowUpArrow] = useState(false);
+  const scrollContainerRef = useRef(null);
 
+  // Reset state whenever the modal opens
   useEffect(() => {
-    if (!isOpen) {
-      setShowCheatCodes(false);
+    if (isOpen) {
+      setShowCheatCodes(showCodesDirectly);
     }
-  }, [isOpen]);
+  }, [isOpen, showCodesDirectly]);
 
-  const cheatCodes = [
-    { id: 1, title: "The Name Game", description: "Click Bulbul 5 times.", hint: "Top left corner" },
-    { id: 2, title: "Theme Hunter", description: "Click theme modal 5 times.", hint: "Theme switcher" },
-    { id: 3, title: "Interface Master", description: "Click 'Interfaces'.", hint: "Hero glow" },
-    { id: 4, title: "Resume Secret", description: "Click '--' in hero.", hint: "The dash" },
-    { id: 5, title: "Music Lover", description: "Click the music icon.", hint: "Melody" },
-    { id: 6, title: "Avatar Expansion", description: "Click avatar.", hint: "Profile picture" },
-    { id: 7, title: "Game Master", description: "Beat the game.", hint: "Skill time" },
-    { id: 8, title: "Hidden Star", description: "Find the star in menu.", hint: "You found it" },
-  ];
+  // Check if content is scrollable
+  useEffect(() => {
+    const checkScroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollHeight, clientHeight } = scrollContainerRef.current;
+        setShowScrollIndicator(scrollHeight > clientHeight);
+      }
+    };
+
+    checkScroll();
+    // Add a small delay to ensure content is rendered
+    const timer = setTimeout(checkScroll, 100);
+
+    window.addEventListener('resize', checkScroll);
+    return () => {
+      window.removeEventListener('resize', checkScroll);
+      clearTimeout(timer);
+    };
+  }, [showCheatCodes, isOpen]);
 
   const handleUnlock = () => {
     setShowCheatCodes(true);
-    onUnlock?.(); 
+    onUnlock?.();
   };
 
+  const scrollDown = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: 200,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollUp = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: -200,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScroll = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+
+    // Show up arrow when scrolled down
+    setShowUpArrow(scrollTop > 50);
+
+    // Hide down indicator when scrolled to bottom
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      setShowScrollIndicator(false);
+    } else if (scrollHeight > clientHeight) {
+      setShowScrollIndicator(true);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  const cheatCodes = [
+    { id: 1, description: "Click Bulbul 5 times.", hint: "Top left corner" },
+    { id: 2, description: "Click theme modal 5 times.", hint: "Theme switcher" },
+    { id: 3, description: "Click 'Interfaces' in the Hero section.", hint: "Hero glow" },
+    { id: 4, description: "Click '--' in hero.", hint: "The dash" },
+    { id: 5, description: "Click the music icon.", hint: "Melody" },
+    { id: 6, description: "Click avatar.", hint: "Profile picture" },
+    { id: 7, description: "Beat the game.", hint: "Skill time" },
+    { id: 8, description: "Find the star in menu.", hint: "You found it" },
+  ];
+
   return (
-    <AlertDialog open={isOpen}>
-      <AlertDialogContent className="max-w-2xl max-h-[90vh] overflow-x-hidden bg-white">
-        <button className="text-xl bg-red-400 p-3 rounded-md absolute text-black top-4 right-4 cursor-pointer" onClick={() => onClose(false)}><IoClose
-          size={15} /></button>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="text-3xl text-black font-bold">
-            You Found the Cheat Codes
-          </AlertDialogTitle>
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4">
+      <div
+        className="bg-white rounded-lg w-full max-w-xl relative"
+        style={{ maxHeight: '90vh' }}
+      >
+        {/* Fixed Header */}
+        <div className="p-6 pb-4 border-b relative bg-white rounded-t-lg">
+          <button
+            className="absolute top-4 right-4 text-black cursor-pointer hover:text-red-500"
+            onClick={onClose}
+          >
+            <IoClose size={20} />
+          </button>
+          <h2 className="text-2xl font-bold pr-8">
+            {showCheatCodes ? "Easter Egg Cheat Codes 🎮" : "You Found the Cheat Codes 🎉"}
+          </h2>
+        </div>
 
-          <AlertDialogDescription className="text-black text-lg">
-            {!showCheatCodes ? (
-              <div>
-                <p className="text-gray-700">
-                  Congratulations! You've discovered the secret Easter egg menu!
-                  There are{" "}
-                  <span className="font-bold">8 hidden Easter eggs</span>{" "}
-                  scattered throughout my portfolio.
-                </p>
-                <p className="text-gray-600 mt-2">
-                  Would you like to unlock all the cheat codes or continue
-                  hunting by yourself?
-                </p>
+        {/* Scrollable Content - with visible scrollbar */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="p-6 pt-4"
+          style={{
+            maxHeight: 'calc(90vh - 80px)',
+            overflowY: 'scroll',
+            overflowX: 'hidden'
+          }}
+        >
+          {!showCheatCodes ? (
+            <div className="text-gray-700 space-y-2">
+              <p>Congratulations! You've discovered the secret Easter egg menu!</p>
+              <p>There are <b>8 hidden Easter eggs</b> scattered throughout my portfolio.</p>
+              <div className="mt-4 flex gap-3 flex-wrap">
+                <button
+                  onClick={onClose}
+                  className="px-4 py-2 bg-lime-400 text-black rounded-md hover:bg-lime-500 transition"
+                >
+                  I'll Find Them Myself 🕵️
+                </button>
+                <button
+                  onClick={handleUnlock}
+                  className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition"
+                >
+                  Unlock Cheat Codes 🔓
+                </button>
               </div>
-            ) : (
-              <div className="mt-6 space-y-6 h-[40rem]">
-                <div className="bg-white p-4 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold mb-4">🗺️ Easter Egg Locations:</h3>
-
-                  <div className="space-y-4">
-                    {cheatCodes.map(code => (
-                      <div key={code.id} className="border-l-4 pl-4 py-2 hover:bg-purple-50 transition-colors">
-
-                        <div className="flex items-start gap-3">
-                          <span className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center">
-                            {code.id}
-                          </span>
-
-                          <div>
-                            <h4 className="font-bold text-gray-800">{code.title}</h4>
-                            <p className="text-gray-600 text-sm">{code.description}</p>
-                            <p className="text-xs italic mt-1">💡 {code.hint}</p>
-                          </div>
-                        </div>
-
-                      </div>
-                    ))}
+            </div>
+          ) : (
+            <div className="space-y-4 pb-4">
+              {cheatCodes.map((code) => (
+                <div key={code.id} className="border-l-4 border-purple-500 pl-4 py-2 hover:bg-purple-50 transition-colors rounded">
+                  <div className="flex items-start gap-3">
+                    <span className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                      {code.id}
+                    </span>
+                    <div>
+                      <p className="font-bold text-gray-800">{code.description}</p>
+                      <p className="text-xs italic mt-1 text-gray-500">💡 {code.hint}</p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-                  <p className="text-sm text-yellow-800">
-                    <b>Pro Tip:</b> Some eggs unlock animations 🎯
-                  </p>
-                </div>
-              </div>
-            )}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        {!showCheatCodes ? (
-          <AlertDialogFooter className="flex gap-3 mt-6">
-            <AlertDialogCancel
-              onClick={() => { setShowCheatCodes(false); onClose?.(); }}
-              className="!bg-lime-400 cursor-pointer hover:!bg-lime-400/80 hover:!text-black text-black px-8 !py-6 rounded-md"
-            >
-              I'll Find Them Myself 🕵️
-            </AlertDialogCancel>
-
-            <AlertDialogAction
-              onClick={handleUnlock}
-              className="bg-black text-white cursor-pointer hover:bg-black/80 px-8 !py-6 rounded-md"
-            >
-              Unlock Cheat Codes 🔓
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        )
-
-
-          : (
-            <AlertDialogFooter className="mt-6">
-              <AlertDialogAction
-                onClick={onClose}
-                className="w-full bg-black text-white py-6 rounded-md"
-              >
-                Start Hunting! 🎯
-              </AlertDialogAction>
-            </AlertDialogFooter>
+              ))}
+            </div>
           )}
+        </div>
 
-      </AlertDialogContent>
-    </AlertDialog >
+        {/* Scroll Down Indicator */}
+        {showScrollIndicator && (
+          <button
+            onClick={scrollDown}
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black text-white rounded-full p-2 shadow-lg hover:bg-gray-800 transition animate-bounce cursor-pointer z-10"
+          >
+            <IoChevronDown size={20} />
+          </button>
+        )}
+
+        {/* Scroll Up Indicator */}
+        {showUpArrow && (
+          <button
+            onClick={scrollUp}
+            className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-black text-white rounded-full p-2 shadow-lg hover:bg-gray-800 transition animate-bounce cursor-pointer z-10"
+          >
+            <IoChevronUp size={20} />
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 
 export default EasterEggCheatModal;
-
