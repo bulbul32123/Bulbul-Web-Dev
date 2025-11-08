@@ -5,10 +5,10 @@ import { useRive, useStateMachineInput } from '@rive-app/react-canvas';
 import { Link } from 'react-router-dom';
 import { useEasterEgg } from '../context/EasterEggContext';
 import useSound from 'use-sound';
-import hoverSound from '/sounds/hover.MP3'; 
-import clickSound from '/sounds/click.MP3'; 
+import hoverSound from '/sounds/hover.MP3';
+import clickSound from '/sounds/click.MP3';
 
-export default function Avatar({ play }) {
+export default function Avatar({ play, scrollToTop }) {
     const [openExpandAvatar, setOpenExpandAvatar] = useState(false);
     const { addEasterEgg } = useEasterEgg();
     const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true });
@@ -74,9 +74,9 @@ export default function Avatar({ play }) {
                     <span className={`absolute -top-8  ${!openExpandAvatar ? "rotate-180 left-1.5" : "rotate-0 left-3.5"}  `}><FaCaretLeft size={openExpandAvatar ? 18 : 13} /></span>
                 </div>
             </div>
-            <Link to={'/'}>
+            <Link to={'/'} onClick={() => scrollToTop()}>
                 <RiveComponent />
             </Link>
-        </div>
+        </div >
     );
 }
