@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { HiMenuAlt4 } from "react-icons/hi";
 import { FiSun, FiMoon, FiCode } from 'react-icons/fi';
+import { IoClose } from "react-icons/io5";
 import Button from './Button';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
 import Avatar from './Avatar';
 import { useEasterEgg } from '../context/EasterEggContext';
 import BubbleCTA from '../../public/icons/BubbleCTA';
@@ -16,21 +17,19 @@ import clickSound2 from '/sounds/eggs.mp3';
 
 export default function SidebarLayout({ children }) {
   const [isAvatarVisible, setIsAvatarVisible] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showBubble, setShowBubble] = useState(null);
   const [isMusicOn, setIsMusicOn] = useState(false);
 
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
   const [devUnlocked, setDevUnlocked] = useState(false);
   const [themeClickCount, setThemeClickCount] = useState(0);
+  const { addEasterEgg, handleMenuOpen, isMenuOpen } = useEasterEgg();
   const [show, setShow] = useState(false);
 
   const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
   const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true });
   const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true });
   const [playClick2] = useSound(clickSound2, { volume: 0.5, interrupt: true });
-
-  const { addEasterEgg } = useEasterEgg();
   const lastScrollY = useRef(0);
   const menuRef = useRef();
   const [logoClickCount, setLogoClickCount] = useState(0);
@@ -84,7 +83,6 @@ export default function SidebarLayout({ children }) {
       return newCount;
     });
   };
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -109,7 +107,7 @@ export default function SidebarLayout({ children }) {
 
   return (
     <>
-      {isAvatarVisible && <Avatar />}
+      {isAvatarVisible && <Avatar play={play} />}
       <Celebration show={show} />
       <div className='h-full w-full'>
         <div className='menu fixed top-0 fixed-sidebar-left left-0 h-full pl-5 md:pl-7 pt-7 pb-7 flex flex-col justify-between items-start z-50'>
@@ -123,9 +121,11 @@ export default function SidebarLayout({ children }) {
         <div className='menu fixed top-0 right-0 fixed-sidebar-right  h-full flex flex-col justify-between items-end md:pr-7 pr-5 pt-7 pb-7 z-50 '>
           <div className="flex items-center text-white cursor-pointer">
             <Button>
-              <button className='p-3 rounded-full cursor-pointer bg-gray-200 text-black hover:bg-white hover:text-black' onMouseEnter={playHover} onClick={playClick2}>
-                <HiMenuAlt4 size={30} />
-              </button>
+              <span className='p-3 rounded-full cursor-pointer bg-gray-200 text-black hover:bg-white hover:text-black' onMouseEnter={playHover} onClick={handleMenuOpen} >
+                {isMenuOpen ? <div className="menu-close-icon">
+                  <IoClose size={30} />
+                </div> : <HiMenuAlt4 size={30} />}
+              </span>
             </Button>
           </div>
 
@@ -148,8 +148,10 @@ export default function SidebarLayout({ children }) {
           </div>
         </div>
 
-        <div className={`cta-bubble ${showBubble === true ? 'is-visible' : showBubble === false ? 'is-hidden' : ''}`} id="lets-talk-bubble">
-          <Link to={'/contactMe'} title="Open Lets Talk CTA">
+        <div className={`cursor-pointer cta-bubble ${showBubble === true ? 'is-visible' : showBubble === false ? 'is-hidden' : ''}`} id="lets-talk-bubble">
+          <Link to={'footer'}
+            smooth={true}
+            duration={500} title="Open Lets Talk CTA">
             <BubbleCTA />
             <div className="bubble-text text-line1"><span>Let&apos;s</span></div>
             <div className="bubble-text text-line1"><span>Talk</span></div>

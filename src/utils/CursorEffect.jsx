@@ -1,6 +1,7 @@
+import React from "react";
 import { motion } from 'framer-motion';
 import useMousePosition from './useMousePosition';
-import { useContextApi } from '@/context/ContextApi';
+import { useContextApi } from '../context/ContextApi';
 
 function isPointerTarget(el) {
     const tag = el?.tagName?.toLowerCase();

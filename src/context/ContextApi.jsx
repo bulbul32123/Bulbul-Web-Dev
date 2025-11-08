@@ -7,9 +7,10 @@ export const useContextApi = () => useContext(Context);
 
 export const Provider = ({ children }) => {
   const [hoveredText, setHoveredText] = useState(null);
+  const [show, setShow] = useState(false);
 
   return (
-    <Context.Provider value={{ hoveredText, setHoveredText }}>
+    <Context.Provider value={{ hoveredText, setHoveredText, show, setShow }}>
       {children}
     </Context.Provider>
   );

@@ -1,26 +1,165 @@
-import { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
+import React, { useRef, useEffect, useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { Link } from "react-scroll";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useEasterEgg } from "../context/EasterEggContext";
+import useSound from "use-sound";
+import eggSound from '/sounds/succes.MP3';
+import Celebration from "./Celebration";
+import EasterEggCheatModal from "./EasterEggCheatModal";
+import { useLockBodyScroll } from "./useLockBodyScroll";
 
+const menuLinks = [
+    { to: "home", label: "HOME" },
+    { to: "work", label: "WORK" },
+    { to: "about", label: "ABOUT" },
+    { to: "footer", label: "CONTACT" },
+    { to: "skills", label: "SKILLS" },
+];
 
-export default function Menu() {
-    const [isOpen, setIsOpen] = useState(false);
+const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
+    const { addEasterEgg } = useEasterEgg();
+    const [show, setShow] = useState(false);
+    const [showCheatModal, setShowCheatModal] = useState(false);
+    const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
+    const container = useRef();
+    const tl = useRef();
+    useLockBodyScroll(isMenuOpen || showCheatModal);
+
+    useGSAP(() => {
+        gsap.set(".menu-overlay", {
+            transformOrigin: "top center",
+            scaleY: 0,
+            display: "flex",
+            pointerEvents: "none",
+        });
+
+        gsap.set(".menu-link-item-holder", { y: 75, autoAlpha: 0 });
+        gsap.set(".menu-info, .menu-footer-left", { autoAlpha: 0 });
+
+        tl.current = gsap.timeline({
+            paused: true
+        })
+            .to(".menu-overlay", {
+                duration: 0.6,
+                scaleY: 1,
+                ease: "power4.inOut",
+                pointerEvents: "auto",
+            })
+            .to(".menu-link-item-holder", {
+                duration: 0.7,
+                y: 0,
+                autoAlpha: 1,
+                stagger: 0.08,
+                ease: "power3.out",
+            }, "-=0.2")
+            .to(".menu-info, .menu-footer-left", {
+                duration: 0.5,
+                autoAlpha: 1,
+                ease: "power2.out",
+            }, "-=0.4");
+    }, { scope: container });
+
+    useEffect(() => {
+        if (!tl.current) return;
+
+        if (isMenuOpen) {
+            tl.current.play();
+        } else {
+            tl.current.reverse();
+        }
+    }, [isMenuOpen]);
+
+    const handleHiddenEasterEggs = () => {
+        setShow(true);
+        play();
+        addEasterEgg("hidden-cheat-code", `You found the hidden cheat code`);
+
+        // Show the cheat code modal after a short delay
+        setTimeout(() => {
+            setShow(false);
+            setShowCheatModal(true);
+        }, 2000);
+    };
+
+    const handleCloseModal = () => {
+        setShowCheatModal(false);
+    };
+
+    const handleUnlockCodes = () => {
+        // Optional: You can add logic here to reveal all Easter eggs or provide hints
+        console.log("User chose to unlock cheat codes!");
+    };
 
     return (
         <>
-            <div className={`fixed top-0 right-0 transition-all duration-300 ease-in-out`}>
-                <svg className={`h-screen w-[500px] relative transition-all duration-300 ease-in-out`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 305" style={{ right: "0px", left: "unset", transform: "matrix(-1, 0, 0, -1, 0, 0)" }} fill={isOpen ? "black" : "white"}>
-                    <g id="main">
-                        <path id="curve" d="M0,-147C76,153 76,153 0,453 Z"></path>
-                    </g>
-                </svg>
-                <button onClick={() => setIsOpen(!isOpen)} className="text-white text-xl font-bold absolute top-[50%] z-20 right-4 cursor-pointer"><GiHamburgerMenu /></button>
-            </div>
-            <div className="">
-                <svg width="1193" height="552" viewBox="0 0 1193 552" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 0H1193V552H22C23.0731 551.695 107.5 522.5 62 476.5C6.5943 420.486 16.5 369.5 107.5 290.5C198.5 211.5 48.0001 162 14 113.5C-20.0001 65 22 0 22 0Z" fill="white" />
-                </svg>
+            <Celebration show={show} />
+            <EasterEggCheatModal
+                isOpen={showCheatModal}
+                onClose={handleCloseModal}
+                onUnlock={handleUnlockCodes}
+            />
 
+            <div className="menu-container" ref={container}>
+                <div className="menu-overlay">
+                    <div className="menu-overlay-bar">
+                    </div>
+
+                    <div className="menu-content">
+                        <div className="menu-links">
+                            {menuLinks.map((link, index) => (
+                                <div className="menu-link-item" key={index}>
+                                    <Link
+                                        to={link.to}
+                                        smooth={true}
+                                        duration={500}
+                                        onClick={handleMenuOpen}
+                                        className="menu-link-wrapper"
+                                    >
+                                        <div
+                                            className="menu-link-item-holder"
+                                            data-text={link.label}
+                                        >
+                                            <span className="menu-link-text">{link.label}</span>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ))}
+                            <span
+                                className="absolute top-[50%] right-[30%] cursor-pointer hover:scale-125 transition-transform"
+                                onClick={handleHiddenEasterEggs}
+                            >
+                                <FaStar size={10} className="text-black hover:text-yellow-500 transition-colors" />
+                            </span>
+                        </div>
+
+                        <div className="menu-footer">
+                            <div className="menu-footer-left">
+                            </div>
+
+                            <div className="menu-info">
+                                <div className="menu-info-col">
+                                    <a href="https://github.com/bulbul32123" className="menu-social-link">GITHUB ↗</a>
+                                    <a href="https://www.linkedin.com/in/bulbulwebdev/" className="menu-social-link">LINKEDIN ↗</a>
+                                    <a href="https://www.facebook.com/profile.php?id=61550563621219" className="menu-social-link">FACEBOOK ↗</a>
+                                    <a href="https://x.com/BulbulIslam369" className="menu-social-link">X (Twitter)↗</a>
+                                </div>
+                                <div className="menu-info-col">
+                                    <p>Email</p>
+                                    <p>mdbulbulislamtheprogrammer@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div className="menu-footer-right">
+                                <p>VIEW SHOWREEL</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );
-}
+};
+
+export default Menu;

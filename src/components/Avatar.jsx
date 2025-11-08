@@ -8,7 +8,7 @@ import useSound from 'use-sound';
 import hoverSound from '/sounds/hover.MP3'; // ✅ New
 import clickSound from '/sounds/click.MP3'; // ✅ New
 
-export default function Avatar() {
+export default function Avatar({ play }) {
     const [openExpandAvatar, setOpenExpandAvatar] = useState(false);
     const { addEasterEgg } = useEasterEgg();
     const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true });
@@ -49,6 +49,7 @@ export default function Avatar() {
     }, [pokeLeft]);
     const handleAvatarExpand = () => {
         addEasterEgg('egg-avatar-detail', 'Exploring the Avatar');
+        play()
         setOpenExpandAvatar((pre) => !pre)
     }
 

@@ -18,7 +18,6 @@ export default function Game() {
   const startGame = () => {
     setShowGame(true);
   };
-  console.log(showCelebration);
 
   const closeGame = () => {
     setShowGame(false);

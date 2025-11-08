@@ -1,4 +1,3 @@
-"use client";
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { techStacks } from "../utils/TechStacks";
@@ -161,7 +160,7 @@ export default function TechStacks() {
         <motion.section
             className="h-full w-full dark:bg-white bg-black py-20 relative overflow-hidden"
             initial="hidden"
-            whileInView="visible"
+            whileInView="visible" name="skills"
         >
 
             <div className="w-full relative z-10">

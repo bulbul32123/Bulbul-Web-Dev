@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutText = ({ sectionRef, boxRef, textRef, titleRef, titleFrontRef, para1Ref, para2Ref }) => {
   return (
-    <div ref={sectionRef} className="h-full w-full">
+    <div ref={sectionRef} className="h-full w-full" to={'about'}>
       <div className="flex justify-center items-center h-full w-full">
         <div
           ref={boxRef}

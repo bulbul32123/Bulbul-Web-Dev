@@ -2,19 +2,51 @@
    Imports & Custom Variants
 ========================= */
 @import "tailwindcss";
+@import "tw-animate-css";
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* =========================
    Root Variables
 ========================= */
 :root {
-  --foreground: #282829;
-  --background: #f5f4f5;
+  --foreground: oklch(0.145 0 0);
+  --background: oklch(1 0 0);
   --secret-theme-bg: #262626;
-  --secret-theme-primary: #caef96; /* caf291 */
+  --secret-theme-primary: #caef96;
+  /* caf291 */
   --secret-theme-text-1: #a4e8eb;
   --secret-theme-text-2: #ffb3db;
   --selection: #f7eb9d;
+  --radius: 0.625rem;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 @theme {
@@ -30,22 +62,27 @@
   font-family: 'Space';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Light.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'SpaceMedium';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Medium.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'SpaceRegular';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'SpaceSemiBold';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'SwitzerExtraBold';
   src: url('/fonts/Switzer/Fonts/WEB/fonts/Switzer-Extrabold.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'SwitzerBold';
   src: url('/fonts/Switzer/Fonts/WEB/fonts/Switzer-Bold.ttf') format('truetype');
@@ -55,13 +92,42 @@
    Theme Variations
 ========================= */
 .dark {
-  --foreground: #f0f0f0;
-  --background: #121212;
+  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.145 0 0);
   --secret-theme-bg: #1e1e1e;
   --secret-theme-primary: #caf291;
   --secret-theme-text-1: #70e6ed;
   --secret-theme-text-2: #ffb3db;
   --selection: #ffe32e;
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 .developer {
@@ -81,11 +147,13 @@ body {
   @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-600;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: "SwitzerExtraBold";
 }
 
-h3, h4 {
+h3,
+h4 {
   font-family: "SwitzerBold";
 }
 
@@ -117,6 +185,7 @@ li {
     .fixed-sidebar-left {
       left: calc((100vw - 1300px) / 2);
     }
+
     .fixed-sidebar-right {
       right: calc((100vw - 1300px) / 2);
     }
@@ -202,7 +271,7 @@ li {
   text-transform: uppercase;
 }
 
-.cta-bubble > a {
+.cta-bubble>a {
   align-items: flex-start;
   background-color: #caf291;
   border-radius: 50%;
@@ -221,19 +290,47 @@ li {
    Animations
 ========================= */
 @keyframes bubble {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.2); }
-  70% { transform: scale(0.9); }
-  90% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  90% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes bubbleReverse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  70% { transform: scale(0.9); }
-  90% { transform: scale(1.05); }
-  100% { transform: scale(0); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  90% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(0);
+  }
 }
 
 /* =========================
@@ -500,4 +597,345 @@ p.p {
 .tech-icon svg {
   width: 40px;
   height: 40px;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Added marquee animations for testimonials section */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+/* Added shiny text animation for new release promo section */
+@keyframes shiny-text {
+
+  0%,
+  90%,
+  100% {
+    background-position: calc(-100px) 0;
+  }
+
+  30%,
+  60% {
+    background-position: calc(100% + 100px) 0;
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+.animate-shiny-text {
+  animation: shiny-text 3s ease-in-out infinite;
+}
+
+
+/* Menu Css */
+.menu-bar,
+.menu-overlay-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+.modal-content {
+  max-height: 90vh;
+  /* prevents modal from exceeding viewport */
+  overflow-y: auto;
+  /* allows modal content to scroll */
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #c5fb45;
+  z-index: 2000;
+  overflow-y: auto;
+  /* allows menu content scroll */
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transform-origin: top center;
+  will-change: transform, opacity;
+}
+
+.menu-overlay-bar {
+  z-index: 2001;
+}
+
+.menu-logo a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.menu-close {
+  cursor: pointer;
+}
+
+.menu-close p {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.menu-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 2em 2em 2em;
+}
+
+.menu-links {
+  margin-top: 6em;
+  margin-left: 8em;
+}
+
+.menu-link-item {
+  width: max-content;
+  margin-bottom: 0.2em;
+  overflow: hidden;
+}
+
+/* Wrapper for Link component */
+.menu-link-wrapper {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-link-item-holder {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Style the span text */
+.menu-link-text {
+  color: #000;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Hover animation on the text */
+.menu-link-item-holder:hover .menu-link-text {
+  transform: translateY(-100%);
+}
+
+/* Pseudo-element for duplicate text */
+.menu-link-item-holder::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #000;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+
+.menu-link-item-holder:hover::after {
+  transform: translateY(-100%);
+}
+
+/* Footer section */
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.menu-footer-left {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.menu-close-icon {
+  cursor: pointer;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.menu-close-icon:hover {
+  transform: rotate(90deg);
+}
+
+.menu-close-icon p {
+  font-size: 40px;
+  color: #000;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.menu-info {
+  flex: 2;
+  display: flex;
+  gap: 4em;
+}
+
+.menu-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.menu-info-col a,
+.menu-info-col p {
+  color: #000;
+  font-size: 14px;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.menu-social-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-social-link:hover {
+  transform: translateX(4px);
+}
+
+.menu-footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.menu-footer-right p {
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-footer-right p:hover {
+  transform: translateX(-4px);
+}
+
+@media (max-width: 900px) {
+  .menu-links {
+    margin-left: 2em;
+    margin-top: 4em;
+  }
+
+  .menu-link-text,
+  .menu-link-item-holder::after {
+    font-size: 60px;
+  }
+
+  .menu-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2em;
+  }
+
+  .menu-close-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .menu-close-icon p {
+    font-size: 40px;
+  }
+
+  .menu-info {
+    width: 100%;
+    gap: 2em;
+  }
 }

@@ -7,7 +7,6 @@ import Projects from './pages/Projects';
 import Curve from './components/Curve';
 import SidebarLayout from './components/SidebarLayout';
 import { EasterEggProvider } from './context/EasterEggContext';
-
 function AnimatedRoutes() {
   const location = useLocation();
   useLenis()
@@ -17,7 +16,7 @@ function AnimatedRoutes() {
 
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname) {
-      setIsLoading(true);     
+      setIsLoading(true);
       const loadingTimeout = setTimeout(() => {
         setIsTransitioning(true);
       }, 400);
@@ -27,14 +26,14 @@ function AnimatedRoutes() {
   }, [location, displayLocation]);
 
   const onTransitionComplete = () => {
-    setDisplayLocation(location); 
+    setDisplayLocation(location);
     setIsTransitioning(false);
     setIsLoading(false);
   };
 
   useEffect(() => {
     if (!isTransitioning && displayLocation === null) {
-      setDisplayLocation(location); 
+      setDisplayLocation(location);
       setIsLoading(false);
     }
   }, [displayLocation, isTransitioning, location]);
@@ -66,3 +65,4 @@ const App = () => {
 };
 
 export default App;
+
