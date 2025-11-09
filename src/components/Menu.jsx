@@ -25,6 +25,8 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
     const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
     const container = useRef();
     const tl = useRef();
+
+
     useLockBodyScroll(isMenuOpen || showCheatModal);
 
     useGSAP(() => {
@@ -70,13 +72,13 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
             tl.current.reverse();
         }
     }, [isMenuOpen]);
+    
 
     const handleHiddenEasterEggs = () => {
         setShow(true);
         play();
         addEasterEgg("hidden-cheat-code", `You found the hidden cheat code`);
 
-        // Show the cheat code modal after a short delay
         setTimeout(() => {
             setShow(false);
             setShowCheatModal(true);
@@ -88,7 +90,6 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
     };
 
     const handleUnlockCodes = () => {
-        // Optional: You can add logic here to reveal all Easter eggs or provide hints
         console.log("User chose to unlock cheat codes!");
     };
 
