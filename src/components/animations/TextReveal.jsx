@@ -19,7 +19,7 @@ const TextReveal = ({ children, as: Component = 'span', className = '', allowOve
         ease: 'power4.out',
         scrollTrigger: {
           trigger: textRef.current,
-          start: 'top 95%', // only plays when it enters view
+          start: 'top 95%', 
           toggleActions: 'play none none none',
         },
       }
