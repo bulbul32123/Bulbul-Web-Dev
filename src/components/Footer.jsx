@@ -16,7 +16,7 @@ export default function Footer() {
     const copyEmail = () => {
         navigator.clipboard.writeText('alejandromejias.work@gmail.com');
         setCopied(true);
-        setTimeout(() => setCopied(false), 1500); // reset after 1.5s
+        setTimeout(() => setCopied(false), 1500);
     };
 
     const hoverVariants = {
@@ -34,7 +34,6 @@ export default function Footer() {
 
     return (
         <footer className=" md:px-28 px-5 py-10" name="footer">
-            {/* Email Section */}
             <div className="border-t border-neutral-800 flex max-md:flex-col max-md:gap-5  py-4 items-center justify-between relative">
                 <motion.span
                     className="text-xl md:text-sm font-mono uppercase tracking-wider"
@@ -154,7 +153,6 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Bottom Section */}
             <div className="border-t border-neutral-800 px-6 py-6 flex items-center justify-between">
                 <motion.span
                     className="text-xs font-mono text-neutral-500"
