@@ -5,14 +5,14 @@ export default function ParagraphReveal({
   text,
   duration = 0.8,
   delay = 0,
-  stagger = 0.06, // <== new prop
+  stagger = 0.06, 
   className,
 }) {
   const words = text.split(' ').map((word, i) => (
     <TextReveal
       key={i}
       duration={duration}
-      delay={delay + i * stagger} // ⬅ stagger each word based on index
+      delay={delay + i * stagger} 
       className="mr-1 inline-block translate-y-full"
     >
       {word}
@@ -25,3 +25,4 @@ export default function ParagraphReveal({
     </p>
   );
 }
+
