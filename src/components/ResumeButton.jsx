@@ -4,7 +4,9 @@ import TextReveal from '../components/animations/TextReveal';
 import Celebration from '../components/Celebration';
 export default function ResumeButton({ dashRef, playClick, setIsResumeVisible, isResumeVisible, play, addEasterEgg }) {
     const [show, setShow] = useState(false);
+    
     const handleClick = () => {
+
         const tl = gsap.timeline();
 
         if (!isResumeVisible) {
