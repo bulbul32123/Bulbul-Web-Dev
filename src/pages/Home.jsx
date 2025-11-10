@@ -15,7 +15,6 @@ export default function Home() {
 
   return (
     <div className="">
-      {/* ALWAYS render Menu - let GSAP handle visibility */}
       <Menu isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       <div className="h-full w-full">
