@@ -1,19 +1,13 @@
-/* =========================
-   Imports & Custom Variants
-========================= */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* =========================
-   Root Variables
-========================= */
 :root {
   --foreground: oklch(0.145 0 0);
   --background: oklch(1 0 0);
   --secret-theme-bg: #262626;
   --secret-theme-primary: #caef96;
-  /* caf291 */
   --secret-theme-text-1: #a4e8eb;
   --secret-theme-text-2: #ffb3db;
   --selection: #f7eb9d;
@@ -55,9 +49,6 @@
   --breakpoint-XMD: 800px;
 }
 
-/* =========================
-   Font Faces
-========================= */
 @font-face {
   font-family: 'Space';
   src: url('/fonts/SpaceGrotesk/Fonts/WEB/fonts/SpaceGrotesk-Light.ttf') format('truetype');
@@ -88,9 +79,6 @@
   src: url('/fonts/Switzer/Fonts/WEB/fonts/Switzer-Bold.ttf') format('truetype');
 }
 
-/* =========================
-   Theme Variations
-========================= */
 .dark {
   --foreground: oklch(0.985 0 0);
   --background: oklch(0.145 0 0);
@@ -140,9 +128,6 @@
   --selection: #ffb3ec;
 }
 
-/* =========================
-   Base Elements
-========================= */
 body {
   @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-600;
 }
@@ -177,9 +162,6 @@ li {
   font-family: "SpaceMedium";
 }
 
-/* =========================
-   Utilities
-========================= */
 @layer utilities {
   @media (min-width: 1536px) {
     .fixed-sidebar-left {
@@ -192,9 +174,6 @@ li {
   }
 }
 
-/* =========================
-   Text Highlights
-========================= */
 .highlighted-text {
   background-image: url('/icons/highLight.svg');
   background-position: 50% 34%;
@@ -218,17 +197,11 @@ li {
   right: -10px;
 }
 
-/* =========================
-   Menu
-========================= */
 .menu {
   mix-blend-mode: difference;
   height: 100%;
 }
 
-/* =========================
-   Call-to-Action Bubble
-========================= */
 .cta-bubble {
   bottom: -90px;
   display: block;
@@ -286,9 +259,6 @@ li {
   width: 100%;
 }
 
-/* =========================
-   Animations
-========================= */
 @keyframes bubble {
   0% {
     transform: scale(0);
@@ -333,9 +303,6 @@ li {
   }
 }
 
-/* =========================
-   Mask & Cursor Effects
-========================= */
 .maskText {
   mix-blend-mode: difference;
   position: relative;
@@ -381,9 +348,6 @@ li {
   color: black;
 }
 
-/* =========================
-   Buttons & Keys
-========================= */
 .button {
   border: 1px solid currentColor;
   border-radius: 5px;
@@ -423,9 +387,6 @@ li {
   top: 0.05em;
 }
 
-/* =========================
-   Dialogue & HUD
-========================= */
 .dialogue {
   align-items: center;
   bottom: 0;
@@ -472,9 +433,6 @@ li {
   margin: 0;
 }
 
-/* =========================
-   Indicators & Curve
-========================= */
 .indicator-line {
   background-color: black;
   height: 2rem;
@@ -509,9 +467,6 @@ li {
   text-align: center;
 }
 
-/* =========================
-   Avatar
-========================= */
 .expand-icon {
   background: #525252;
   display: none;
@@ -521,9 +476,6 @@ li {
   display: inline;
 }
 
-/* =========================
-   Container Hover Effect
-========================= */
 .containere {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -565,9 +517,6 @@ p.p {
   transition: 0.3s;
 }
 
-/* =========================
-   Tech Stack
-========================= */
 .tech-stack-label {
   font-size: 0.9rem;
   color: #ccc;
@@ -712,9 +661,7 @@ p.p {
 
 .modal-content {
   max-height: 90vh;
-  /* prevents modal from exceeding viewport */
   overflow-y: auto;
-  /* allows modal content to scroll */
 }
 
 .menu-overlay {
@@ -726,7 +673,6 @@ p.p {
   background: #c5fb45;
   z-index: 2000;
   overflow-y: auto;
-  /* allows menu content scroll */
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -776,7 +722,6 @@ p.p {
   overflow: hidden;
 }
 
-/* Wrapper for Link component */
 .menu-link-wrapper {
   display: block;
   text-decoration: none;
@@ -788,7 +733,6 @@ p.p {
   cursor: pointer;
 }
 
-/* Style the span text */
 .menu-link-text {
   color: #000;
   font-size: 5rem;
@@ -800,12 +744,10 @@ p.p {
   transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-/* Hover animation on the text */
 .menu-link-item-holder:hover .menu-link-text {
   transform: translateY(-100%);
 }
 
-/* Pseudo-element for duplicate text */
 .menu-link-item-holder::after {
   content: attr(data-text);
   position: absolute;
@@ -824,7 +766,6 @@ p.p {
   transform: translateY(-100%);
 }
 
-/* Footer section */
 .menu-footer {
   display: flex;
   justify-content: space-between;
