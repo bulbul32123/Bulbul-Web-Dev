@@ -6,6 +6,7 @@ import AboutText from '../components/about/AboutText';
 import GridBox from '../components/about/GridBox';
 import { GRID_BOX_DATA } from '../components/about/gridData';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
