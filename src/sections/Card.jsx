@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Card({ data }) {
