@@ -11,6 +11,7 @@ const BAD_PRACTICES = [
   'Spaghetti Code', 'Long Functions', 'Loop Holes'
 ];
 
+
 export default function Game() {
   const [showGame, setShowGame] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
