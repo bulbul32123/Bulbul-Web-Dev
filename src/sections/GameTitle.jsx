@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+
 export default function GameTitle() {
     const titleRef = useRef(null);
     const title2Ref = useRef(null);
