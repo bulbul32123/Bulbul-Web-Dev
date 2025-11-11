@@ -103,6 +103,7 @@ export default function Hero() {
           className="md:w-[37rem] sm:w-[34rem] max-sm:px-10 2xl:text-base pb-5 text-sm text-gray-700 dark:text-gray-300 text-center"
         />
       </div>
+      
     </>
   );
 }
