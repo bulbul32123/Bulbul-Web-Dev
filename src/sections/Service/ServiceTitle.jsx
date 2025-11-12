@@ -2,11 +2,13 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ServiceTitle({ text, className,textSize }) {
     const titleRef = useRef(null);
     const titleFrontRef = useRef(null);
+
 
     useEffect(() => {
         const ctx = gsap.context(() => {
