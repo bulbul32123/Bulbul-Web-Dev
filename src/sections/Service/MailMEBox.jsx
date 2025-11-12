@@ -8,6 +8,7 @@ export default function MailMEBox({ email, bg, service }) {
         setIsMobile(/android|iphone|ipad|ipod/.test(ua));
     }, []);
 
+
     const subject = encodeURIComponent(`Opportunity for ${service} position`);
     const body = encodeURIComponent(
         `Hello Bulbul,
@@ -23,6 +24,7 @@ Best regards,
     const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
 
     const href = isMobile ? mailto : gmail;
+    
 
     return (
         <div className={`flex gap-3 ${bg}`}>
