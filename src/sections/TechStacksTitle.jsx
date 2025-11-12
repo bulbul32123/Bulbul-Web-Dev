@@ -44,6 +44,7 @@ export default function TechStacksTitle() {
         <span
           ref={titleFrontRef}
           className="absolute top-0 left-0 dark:text-black text-white whitespace-nowrap overflow-hidden"
+          
           style={{ width: "0%" }}
         >
           tech stacks
