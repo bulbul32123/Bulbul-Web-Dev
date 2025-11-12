@@ -24,17 +24,15 @@ const services = [
   },
 ];
 
-// Framer Motion container variant for staggered children
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.25, // stagger interval between cards
+      staggerChildren: 0.25, 
     },
   },
 };
 
-// Each card animation
 const cardVariants = {
   hidden: { y: 50, opacity: 0 },
   visible: {
@@ -48,20 +46,18 @@ export default function Services() {
   return (
     <section className="py-16 dark:bg-[#0d0d0d] transition-colors duration-300" name={'service'}>
       <div className="w-full mx-auto px-6">
-        {/* Section Heading */}
         <ServiceTitle
           text="What I do"
           className="text-black dark:text-white"
           textSize="text-6xl md:text-9xl"
         />
 
-        {/* Services Grid */}
         <motion.div
           className="grid grid-cols-1 max-md:gap-5 md:grid-cols-3 w-full relative"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }} // triggers when 40% visible
+          viewport={{ once: true, amount: 0.4 }} 
         >
           {services.map((service, i) => (
             <motion.div
@@ -69,13 +65,11 @@ export default function Services() {
               variants={cardVariants}
               className="relative group h-[35rem] overflow-hidden cursor-pointer"
             >
-              {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500"
                 style={{ backgroundImage: `url(${service.img})` }}
               />
 
-              {/* Card Content */}
               <div className="hover:bg-black/40 group z-20 relative h-full p-5 md:p-4 lg:p-6 transition-transform duration-500">
                 <div className="flex flex-col items-center justify-center h-full">
                   <h3 className="text-4xl z-[12] text-black font-bold mt-7">
