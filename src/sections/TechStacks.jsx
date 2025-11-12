@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+
 import { techStacks } from "../utils/TechStacks";
 import TechStacksTitle from "./TechStacksTitle";
 
