@@ -3,6 +3,7 @@ import { Marquee } from "../../components/magicui/marquee"
 import ServiceTitle from "../Service/ServiceTitle";
 import ClientPic from "../../components/ClientPic";
 
+
 const testimonials = [
   {
     name: "a_doria",
