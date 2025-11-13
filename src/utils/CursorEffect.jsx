@@ -4,6 +4,7 @@ import useMousePosition from './useMousePosition';
 import { useContextApi } from '../context/ContextApi';
 
 function isPointerTarget(el) {
+    
     const tag = el?.tagName?.toLowerCase();
     return ['a', 'button', 'input', 'textarea', 'select', 'label'].includes(tag);
 }
