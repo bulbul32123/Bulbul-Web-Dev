@@ -7,6 +7,7 @@ import Projects from './pages/Projects';
 import Curve from './components/Curve';
 import SidebarLayout from './components/SidebarLayout';
 import { EasterEggProvider } from './context/EasterEggContext';
+
 function AnimatedRoutes() {
   const location = useLocation();
   useLenis()
