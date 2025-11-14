@@ -5,8 +5,8 @@ import { useRive, useStateMachineInput } from '@rive-app/react-canvas';
 import { Link } from 'react-router-dom';
 import { useEasterEgg } from '../context/EasterEggContext';
 import useSound from 'use-sound';
-import hoverSound from '/sounds/hover.MP3'; // ✅ New
-import clickSound from '/sounds/click.MP3'; // ✅ New
+import hoverSound from '/sounds/hover.MP3'; 
+import clickSound from '/sounds/click.MP3'; 
 
 export default function Avatar({ play }) {
     const [openExpandAvatar, setOpenExpandAvatar] = useState(false);
@@ -22,7 +22,6 @@ export default function Avatar({ play }) {
         autoplay: true,
     });
 
-    // 👇 Input to control the eye poke
     const pokeLeft = useStateMachineInput(rive, STATE_MACHINE_NAME, "poked left eye");
 
     useEffect(() => {
@@ -58,7 +57,6 @@ export default function Avatar({ play }) {
             const currentScrollY = window.scrollY;
 
             if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
-                // Scrolled down more than 100px
                 setOpenExpandAvatar(false);
             }
             lastScrollY.current = currentScrollY;
