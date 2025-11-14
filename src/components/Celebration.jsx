@@ -2,6 +2,7 @@ import React from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 
 export default function Celebration({ show}) {
+    
 
     if (!show) return null;
     return (
