@@ -4,7 +4,8 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import { FiSun, FiMoon, FiCode } from 'react-icons/fi';
 import { IoClose } from "react-icons/io5";
 import Button from './Button';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
 import Avatar from './Avatar';
 import { useEasterEgg } from '../context/EasterEggContext';
 import BubbleCTA from '../../public/icons/BubbleCTA';
@@ -26,13 +27,17 @@ export default function SidebarLayout({ children }) {
   const { addEasterEgg, handleMenuOpen, isMenuOpen } = useEasterEgg();
   const [show, setShow] = useState(false);
 
-  const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
-  const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true });
-  const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true });
-  const [playClick2] = useSound(clickSound2, { volume: 0.5, interrupt: true });
+  const [play] = useSound(eggSound, { volume: 0.6, interrupt: true, soundEnabled: true, });
+  const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
+  const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
+  const [playClick2] = useSound(clickSound2, { volume: 0.5, interrupt: true, soundEnabled: true, });
   const lastScrollY = useRef(0);
   const menuRef = useRef();
   const [logoClickCount, setLogoClickCount] = useState(0);
+  
+  const scrollToTop = () => {
+    scroll.scrollToTop({ duration: 500, smooth: true });
+  };
 
   useEffect(() => {
     document.documentElement.classList.remove('light', 'dark', 'developer');
@@ -107,18 +112,18 @@ export default function SidebarLayout({ children }) {
 
   return (
     <>
-      {isAvatarVisible && <Avatar play={play} />}
+      {isAvatarVisible && <Avatar play={play} scrollToTop={scrollToTop} />}
       <Celebration show={show} />
       <div className='h-full w-full'>
-        <div className='menu fixed top-0 fixed-sidebar-left left-0 h-full pl-5 md:pl-7 pt-7 pb-7 flex flex-col justify-between items-start z-50'>
-          <div onClick={() => { handleLogoClick(); playClick(); }} className="cursor-pointer" onMouseEnter={playHover}>
+        <div className='menu fixed top-0 fixed-sidebar-left left-0 h-full pl-5 md:pl-7 pt-7 pb-7 flex flex-col justify-between items-start z-[50]'>
+          <div onClick={() => { handleLogoClick(); playClick(); scrollToTop(); }} className="cursor-pointer" onMouseEnter={playHover}>
             {!isAvatarVisible && <Link to='/' className="text-white text-xl font-extrabold select-none">BulBul</Link>}
           </div>
           <div />
           <div />
         </div>
         <main className='z-40 relative w-full h-full'>{children}</main>
-        <div className='menu fixed top-0 right-0 fixed-sidebar-right  h-full flex flex-col justify-between items-end md:pr-7 pr-5 pt-7 pb-7 z-50 '>
+        <div className='menu fixed top-0 right-0 fixed-sidebar-right  h-full flex flex-col justify-between items-end md:pr-7 pr-5 pt-7 pb-7 z-[50] '>
           <div className="flex items-center text-white cursor-pointer">
             <Button>
               <span className='p-3 rounded-full cursor-pointer bg-gray-200 text-black hover:bg-white hover:text-black' onMouseEnter={playHover} onClick={handleMenuOpen} >
