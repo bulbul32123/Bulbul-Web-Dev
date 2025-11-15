@@ -9,6 +9,7 @@ import eggSound from '/sounds/succes.MP3';
 import Celebration from "./Celebration";
 import EasterEggCheatModal from "./EasterEggCheatModal";
 import { useLockBodyScroll } from "./useLockBodyScroll";
+import EasterEggLocationsModal from "./EasterEggLocationsModal";
 
 const menuLinks = [
     { to: "home", label: "HOME" },
@@ -22,6 +23,8 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
     const { addEasterEgg } = useEasterEgg();
     const [show, setShow] = useState(false);
     const [showCheatModal, setShowCheatModal] = useState(false);
+    const [showLocationsModal, setShowLocationsModal] = useState(false);
+
     const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
     const container = useRef();
     const tl = useRef();
@@ -72,21 +75,30 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
             tl.current.reverse();
         }
     }, [isMenuOpen]);
-    
 
+
+    const cheatCodes = [
+        { id: 1, title: "The Name Game", description: "Click Bulbul 5 times.", hint: "Top left corner" },
+        { id: 2, title: "Theme Hunter", description: "Click theme modal 5 times.", hint: "Theme switcher" },
+        { id: 3, title: "Interface Master", description: "Click 'Interfaces'.", hint: "Hero glow" },
+        { id: 4, title: "Resume Secret", description: "Click '--' in hero.", hint: "The dash" },
+        { id: 5, title: "Music Lover", description: "Click the music icon.", hint: "Melody" },
+        { id: 6, title: "Avatar Expansion", description: "Click avatar.", hint: "Profile picture" },
+        { id: 7, title: "Game Master", description: "Beat the game.", hint: "Skill time" },
+        { id: 8, title: "Hidden Star", description: "Find the star in menu.", hint: "You found it" },
+    ];
     const handleHiddenEasterEggs = () => {
-        setShow(true);
-        play();
-        addEasterEgg("hidden-cheat-code", `You found the hidden cheat code`);
+        if (show) {
+            showLocationsModal(true);
+        } else {
+            setShow(true);
+            play();
+            addEasterEgg("hidden-cheat-code", `You found the hidden cheat code`);
 
-        setTimeout(() => {
-            setShow(false);
-            setShowCheatModal(true);
-        }, 2000);
-    };
-
-    const handleCloseModal = () => {
-        setShowCheatModal(false);
+            setTimeout(() => {
+                setShowCheatModal(true);
+            }, 2000);
+        }
     };
 
     const handleUnlockCodes = () => {
@@ -96,10 +108,18 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
     return (
         <>
             <Celebration show={show} />
+            {/* Cheat Codes Modal */}
             <EasterEggCheatModal
                 isOpen={showCheatModal}
-                onClose={handleCloseModal}
-                onUnlock={handleUnlockCodes}
+                onClose={() => setShowCheatModal(false)}
+                onUnlock={handleUnlockCodes} // unlock triggers locations modal
+            />
+
+            {/* Locations Modal */}
+            <EasterEggLocationsModal
+                isOpen={showLocationsModal}
+                locations={cheatCodes}
+                onClose={() => setShowLocationsModal(false)}
             />
 
             <div className="menu-container" ref={container}>
@@ -164,3 +184,34 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
 };
 
 export default Menu;
+
+
+//  Model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+src/components/SidebarLayout.jsx
+src/components/useLockBodyScroll.jsx
+src/context/EasterEggContext.jsx
+src/context/TransitionContext.jsx
+src/esterEggs/SpaceGame.jsx
+
+
+src/index.css
+src/pages/Home.jsx
+src/pages/Projects.jsx
+src/components/EasterEggLocationsModal.jsx
+src/components/SoundModal.jsx
+
+src/context/SoundContext.jsx
