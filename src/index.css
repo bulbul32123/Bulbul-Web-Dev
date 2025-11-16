@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:where(.dark, .dark *));
@@ -130,6 +129,15 @@
 
 body {
   @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-600;
+}
+
+.textFontFamily {
+  font-family: "SwitzerExtraBold";
+}
+.div{
+  scrollbar-width: 2px;
+  scroll-behavior: smooth;
+  
 }
 
 h1,
