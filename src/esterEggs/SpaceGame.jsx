@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useRef, useState } from 'react';
-import { Play, Zap, Target, Gamepad2, Trophy, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Zap, Gamepad2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useSound from 'use-sound';
 import { useEasterEgg } from '../context/EasterEggContext';
@@ -331,7 +331,6 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
                 >
                   <ChevronLeft size={24} className="text-white" />
                 </button>
-
                 <button
                   onTouchStart={() => handleMobileShoot(true)}
                   onTouchEnd={() => handleMobileShoot(false)}
@@ -342,8 +341,6 @@ export const SpaceGame = ({ onClose, setShowCelebration }) => {
                 >
                   <Zap size={28} className="text-white" />
                 </button>
-
-                {/* Right Movement Button */}
                 <button
                   onTouchStart={() => handleMobileRight(true)}
                   onTouchEnd={() => handleMobileRight(false)}
