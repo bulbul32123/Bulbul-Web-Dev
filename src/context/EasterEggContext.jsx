@@ -18,8 +18,11 @@ export const EasterEggProvider = ({ children }) => {
     setIsMenuOpen((pre) => !pre)
   }
   const addEasterEgg = (id, message) => {
+    console.log("id", id);
     if (!foundEggs.includes(id)) {
       const updated = [...foundEggs, id];
+      console.log('updated', updated);
+
       setFoundEggs(updated);
       setFoundCount(updated.length);
 
@@ -31,7 +34,7 @@ export const EasterEggProvider = ({ children }) => {
   };
 
   return (
-    <EasterEggContext.Provider value={{ addEasterEgg, handleMenuOpen, foundCount, totalEggs: TOTAL_EGGS, isMenuOpen, setIsMenuOpen }}>
+    <EasterEggContext.Provider value={{ addEasterEgg, foundEggs, handleMenuOpen, foundCount, totalEggs: TOTAL_EGGS, isMenuOpen, setIsMenuOpen }}>
       {children}
     </EasterEggContext.Provider>
   );
