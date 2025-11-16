@@ -3,7 +3,6 @@ import { useEffect } from "react";
 export const useLockBodyScroll = (isLocked) => {
     useEffect(() => {
         if (!isLocked) return;
-
         const scrollY = window.scrollY;
         document.body.style.position = "fixed";
         document.body.style.top = `-${scrollY}px`;
@@ -11,7 +10,7 @@ export const useLockBodyScroll = (isLocked) => {
         document.body.style.right = "0";
         document.body.style.overflow = "hidden";
         document.body.dataset.scrollY = scrollY;
-
+        
         return () => {
             const scrollY = document.body.dataset.scrollY;
             document.body.style.position = "";
