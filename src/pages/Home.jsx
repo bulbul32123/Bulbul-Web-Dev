@@ -14,7 +14,7 @@ export default function Home() {
   const { setIsMenuOpen, isMenuOpen, handleMenuOpen } = useEasterEgg()
 
   return (
-    <div className="">
+    <div className="h-full w-full">
       <Menu isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       <div className="h-full w-full">
