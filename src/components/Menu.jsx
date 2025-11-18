@@ -19,7 +19,7 @@ const menuLinks = [
     { to: "skills", label: "SKILLS" },
 ];
 
-const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
+const Menu = ({ isMenuOpen, handleMenuOpen }) => {
     const { addEasterEgg } = useEasterEgg();
     const [show, setShow] = useState(false);
     const [showCheatModal, setShowCheatModal] = useState(false);
@@ -186,7 +186,6 @@ const Menu = ({ setIsMenuOpen, isMenuOpen, handleMenuOpen }) => {
 export default Menu;
 
 
-//  Model
 
 
 
@@ -194,24 +193,3 @@ export default Menu;
 
 
 
-
-
-
-
-
-
-
-src/components/SidebarLayout.jsx
-src/components/useLockBodyScroll.jsx
-src/context/EasterEggContext.jsx
-src/context/TransitionContext.jsx
-src/esterEggs/SpaceGame.jsx
-
-
-src/index.css
-src/pages/Home.jsx
-src/pages/Projects.jsx
-src/components/EasterEggLocationsModal.jsx
-src/components/SoundModal.jsx
-
-src/context/SoundContext.jsx
