@@ -44,7 +44,7 @@ const cardVariants = {
 
 export default function Services() {
   return (
-    <section className="py-16 dark:bg-[#0d0d0d] transition-colors duration-300" name={'service'}>
+    <section className="py-16 transition-colors duration-300" name={'service'}>
       <div className="w-full mx-auto px-6">
         <ServiceTitle
           text="What I do"
