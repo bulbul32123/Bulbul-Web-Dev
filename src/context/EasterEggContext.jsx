@@ -18,10 +18,8 @@ export const EasterEggProvider = ({ children }) => {
     setIsMenuOpen((pre) => !pre)
   }
   const addEasterEgg = (id, message) => {
-    console.log("id", id);
     if (!foundEggs.includes(id)) {
       const updated = [...foundEggs, id];
-      console.log('updated', updated);
 
       setFoundEggs(updated);
       setFoundCount(updated.length);
