@@ -53,7 +53,7 @@ export default function Card({ data }) {
                     </div>
                 </div>
 
-                <div className="overflow-hidden">
+                <div className="overflow-hidden block">
                     <div ref={imgRef}>
                         <div className="relative overflow-hidden scale-100 w-full">
                             <img
