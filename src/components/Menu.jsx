@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useEasterEgg } from "../context/EasterEggContext";
 import useSound from "use-sound";
+import hoverSound from '/sounds/hover.MP3';
 import eggSound from '/sounds/succes.MP3';
 import Celebration from "./Celebration";
 import EasterEggCheatModal from "./EasterEggCheatModal";
@@ -22,6 +23,7 @@ const menuLinks = [
 const Menu = ({ isMenuOpen, handleMenuOpen }) => {
     const { addEasterEgg } = useEasterEgg();
     const [show, setShow] = useState(false);
+    const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
     const [showCheatModal, setShowCheatModal] = useState(false);
     const [showLocationsModal, setShowLocationsModal] = useState(false);
 
@@ -122,7 +124,7 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
                 onClose={() => setShowLocationsModal(false)}
             />
 
-            <div className="menu-container" ref={container}>
+            <div className="menu-container overflow-y-hidden" ref={container}>
                 <div className="menu-overlay">
                     <div className="menu-overlay-bar">
                     </div>
@@ -130,17 +132,20 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
                     <div className="menu-content">
                         <div className="menu-links">
                             {menuLinks.map((link, index) => (
-                                <div className="menu-link-item" key={index}>
+                                <div className="menu-link-item Span" key={index}>
                                     <Link
                                         to={link.to}
                                         smooth={true}
                                         duration={500}
                                         onClick={handleMenuOpen}
                                         className="menu-link-wrapper"
+
+
                                     >
                                         <div
                                             className="menu-link-item-holder"
                                             data-text={link.label}
+                                            onMouseEnter={playHover}
                                         >
                                             <span className="menu-link-text">{link.label}</span>
                                         </div>
@@ -151,7 +156,7 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
                                 className="absolute top-[50%] right-[30%] cursor-pointer hover:scale-125 transition-transform"
                                 onClick={handleHiddenEasterEggs}
                             >
-                                <FaStar size={10} className="text-black hover:text-yellow-500 transition-colors" />
+                                <FaStar size={10} className="text-black" />
                             </span>
                         </div>
 
@@ -160,20 +165,16 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
                             </div>
 
                             <div className="menu-info">
-                                <div className="menu-info-col">
-                                    <a href="https://github.com/bulbul32123" className="menu-social-link">GITHUB ↗</a>
-                                    <a href="https://www.linkedin.com/in/bulbulwebdev/" className="menu-social-link">LINKEDIN ↗</a>
-                                    <a href="https://www.facebook.com/profile.php?id=61550563621219" className="menu-social-link">FACEBOOK ↗</a>
-                                    <a href="https://x.com/BulbulIslam369" className="menu-social-link">X (Twitter)↗</a>
+                                <div className="menu-info-col para">
+                                    <a onMouseEnter={playHover} target="_blank" href="https://github.com/bulbul32123" className="menu-social-link">GITHUB ↗</a>
+                                    <a onMouseEnter={playHover} target="_blank" href="https://www.linkedin.com/in/bulbulwebdev/" className="menu-social-link">LINKEDIN ↗</a>
+                                    <a onMouseEnter={playHover} target="_blank" href="https://www.facebook.com/profile.php?id=61550563621219" className="menu-social-link">FACEBOOK ↗</a>
+                                    <a onMouseEnter={playHover} target="_blank" href="https://x.com/BulbulIslam369" className="menu-social-link">X (Twitter) ↗</a>
                                 </div>
                                 <div className="menu-info-col">
                                     <p>Email</p>
                                     <p>mdbulbulislamtheprogrammer@gmail.com</p>
                                 </div>
-                            </div>
-
-                            <div className="menu-footer-right">
-                                <p>VIEW SHOWREEL</p>
                             </div>
                         </div>
                     </div>
