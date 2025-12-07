@@ -32,6 +32,7 @@ export default function SidebarLayout({ children }) {
   const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
   const [playClick2] = useSound(clickSound2, { volume: 0.5, interrupt: true, soundEnabled: true, });
   const lastScrollY = useRef(0);
+  const audioRef = useRef(null);
   const menuRef = useRef();
   const [logoClickCount, setLogoClickCount] = useState(0);
 
@@ -109,7 +110,39 @@ export default function SidebarLayout({ children }) {
       gsap.to(menuRef.current, { x: '100%', duration: 0.5, ease: 'power3.in' });
     }
   }, [isMenuOpen]);
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
 
+    if (isMusicOn) {
+      audio.volume = 0;
+      audio.play().catch(() => { }); // avoid user gesture issues
+
+      // fade in
+      const fade = setInterval(() => {
+        if (audio.volume < 0.02) {
+          audio.volume += 0.01;
+        } else {
+          clearInterval(fade);
+        }
+      }, 120);
+
+      return () => clearInterval(fade);
+    } else {
+      // fade out
+      const fade = setInterval(() => {
+        if (audio.volume > 0.001) {
+          audio.volume -= 0.001;
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+          clearInterval(fade);
+        }
+      }, 100);
+
+      return () => clearInterval(fade);
+    }
+  }, [isMusicOn]);
   return (
     <>
       {isAvatarVisible && <Avatar play={play} scrollToTop={scrollToTop} />}
@@ -143,8 +176,8 @@ export default function SidebarLayout({ children }) {
           </div>
 
           <div className="select-none -rotate-90 pt-[2.7rem] text-end relative cursor-pointer text-sm" onClick={() => { setIsMusicOn(!isMusicOn); playClick(); }} onMouseEnter={playHover}>
-            <span className='text-gray-400'>Music</span>{" "}
-            <button className='overflow-hidden text-left'>
+            <span className='text-gray-400 para'>Music</span>{" "}
+            <button className='overflow-hidden text-left para'>
               <div className="relative cursor-pointer w-7 -mb-1 overflow-hidden text-sm uppercase !text-black">
                 <span className={`inline-block text-white transition duration-500 ease-out ${isMusicOn && "-translate-y-[100%]"}`}>ON</span>
                 <span className={`absolute left-0 text-white inline-block transition duration-500 ease-out ${!isMusicOn && "translate-y-[100%]"}`}>OFF</span>
@@ -153,10 +186,95 @@ export default function SidebarLayout({ children }) {
           </div>
         </div>
 
+
         <BubbleCTASection showBubble={showBubble} />
-
-
+        <audio
+          ref={audioRef}
+          src="/sounds/bg3.MP3"
+          loop
+          preload="auto"
+        />
       </div>
     </>
   );
 }
+
+
+
+
+
+
+
+// For bg1
+
+// useEffect(() => {
+//   const audio = audioRef.current;
+//   if (!audio) return;
+
+//   if (isMusicOn) {
+//     audio.volume = 0;
+//     audio.play().catch(() => { }); // avoid user gesture issues
+
+//     // fade in
+//     const fade = setInterval(() => {
+//       if (audio.volume < 0.2) {
+//         audio.volume += 0.01;
+//       } else {
+//         clearInterval(fade);
+//       }
+//     }, 120);
+
+//     return () => clearInterval(fade);
+//   } else {
+//     // fade out
+//     const fade = setInterval(() => {
+//       if (audio.volume > 0.15) {
+//         audio.volume -= 0.001;
+//       } else {
+//         audio.pause();
+//         audio.currentTime = 0;
+//         clearInterval(fade);
+//       }
+//     }, 100);
+
+//     return () => clearInterval(fade);
+//   }
+// }, [isMusicOn]);
+
+
+
+
+
+// useEffect(() => {
+//   const audio = audioRef.current;
+//   if (!audio) return;
+
+//   if (isMusicOn) {
+//     audio.volume = 0;
+//     audio.play().catch(() => { }); // avoid user gesture issues
+
+//     // fade in
+//     const fade = setInterval(() => {
+//       if (audio.volume < 0.05) {
+//         audio.volume += 0.01;
+//       } else {
+//         clearInterval(fade);
+//       }
+//     }, 120);
+
+//     return () => clearInterval(fade);
+//   } else {
+//     // fade out
+//     const fade = setInterval(() => {
+//       if (audio.volume > 0.07) {
+//         audio.volume -= 0.001;
+//       } else {
+//         audio.pause();
+//         audio.currentTime = 0;
+//         clearInterval(fade);
+//       }
+//     }, 100);
+
+//     return () => clearInterval(fade);
+//   }
+// }, [isMusicOn]);
