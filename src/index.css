@@ -134,10 +134,15 @@ body {
 .textFontFamily {
   font-family: "SwitzerExtraBold";
 }
-.div{
+
+.div {
   scrollbar-width: 2px;
   scroll-behavior: smooth;
-  
+
+}
+
+.Span {
+  font-family: "SwitzerExtraBold";
 }
 
 h1,
