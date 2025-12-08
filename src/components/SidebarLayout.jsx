@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 import { animateScroll as scroll } from 'react-scroll';
 import Avatar from './Avatar';
 import { useEasterEgg } from '../context/EasterEggContext';
-import BubbleCTA from '../../public/icons/BubbleCTA';
 import Celebration from './Celebration';
 import useSound from 'use-sound';
 import eggSound from '/sounds/succes.MP3';
 import hoverSound from '/sounds/hover.MP3';
 import clickSound from '/sounds/click.MP3';
 import clickSound2 from '/sounds/eggs.mp3';
+import BubbleCTASection from '@/sections/BubbleCTASection';
 
 export default function SidebarLayout({ children }) {
   const [isAvatarVisible, setIsAvatarVisible] = useState(false);
@@ -34,7 +34,7 @@ export default function SidebarLayout({ children }) {
   const lastScrollY = useRef(0);
   const menuRef = useRef();
   const [logoClickCount, setLogoClickCount] = useState(0);
-  
+
   const scrollToTop = () => {
     scroll.scrollToTop({ duration: 500, smooth: true });
   };
@@ -153,15 +153,7 @@ export default function SidebarLayout({ children }) {
           </div>
         </div>
 
-        <div className={`cursor-pointer cta-bubble ${showBubble === true ? 'is-visible' : showBubble === false ? 'is-hidden' : ''}`} id="lets-talk-bubble">
-          <Link to={'footer'}
-            smooth={true}
-            duration={500} title="Open Lets Talk CTA">
-            <BubbleCTA />
-            <div className="bubble-text text-line1"><span>Let&apos;s</span></div>
-            <div className="bubble-text text-line1"><span>Talk</span></div>
-          </Link>
-        </div>
+        <BubbleCTASection showBubble={showBubble} />
 
 
       </div>
