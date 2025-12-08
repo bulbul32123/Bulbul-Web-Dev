@@ -89,7 +89,7 @@ const GridBoxItem = ({
       >
         <motion.span 
           ref={el => numberRefs.current[index] = el} 
-          className="pr-2"
+          className="pr-2 Span"
           variants={numberVariants}
         >
           {data.number}
@@ -113,7 +113,7 @@ const GridBoxItem = ({
         {data.text.map((line, i) => (
           <motion.p 
             key={i} 
-            className="uppercase text-[38px] font-bold"
+            className="uppercase text-[38px] font-bold Span"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ 
               opacity: 1, 
