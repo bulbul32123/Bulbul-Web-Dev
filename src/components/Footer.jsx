@@ -5,9 +5,14 @@ import { FaTwitterSquare } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, animateScroll as scroll } from 'react-scroll';
+import hoverSound from '/sounds/hover.MP3';
+import useSound from 'use-sound';
+import clickSound from '/sounds/click.MP3';
 
 export default function Footer() {
     const [copied, setCopied] = useState(false);
+    const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
+    const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
 
 
     const scrollToTop = () => {
@@ -16,6 +21,7 @@ export default function Footer() {
     const copyEmail = () => {
         navigator.clipboard.writeText('alejandromejias.work@gmail.com');
         setCopied(true);
+        playClick()
         setTimeout(() => setCopied(false), 1500);
     };
 
@@ -51,7 +57,7 @@ export default function Footer() {
                     className="bg-lime-400 text-black px-8 py-4 rounded-full flex items-center gap-3 relative overflow-hidden"
                     whileTap={hoverVariants.tap}
                     initial={{ opacity: 0, x: 10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: 0.1 }}
                 >
@@ -109,6 +115,7 @@ export default function Footer() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: 0.2 + i * 0.1 }}
+                            onMouseEnter={playHover}
                         >
                             {item.icon}
                             <span className=''>{item.label}</span>
@@ -136,7 +143,8 @@ export default function Footer() {
                             to={link.to}
                             smooth={true}
                             duration={500}
-                            className="flex items-center gap-2 font-mono uppercase text-sm tracking-wider hover:underline cursor-pointer"
+                            onMouseEnter={playHover}
+                            className="flex items-center gap-2 font-mono uppercase text-sm tracking-wider cursor-pointer"
                         >
                             <motion.span
                                 whileHover={hoverVariants.hover}
@@ -177,7 +185,7 @@ export default function Footer() {
 
                 <motion.button
                     onClick={scrollToTop}
-                    className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider"
+                    className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider cursor-pointer"
                     whileHover={hoverVariants.hover}
                     whileTap={hoverVariants.tap}
                     initial={{ opacity: 0, y: 5 }}
