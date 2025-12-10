@@ -4,7 +4,7 @@ import { useSoundSystem } from "../context/SoundContext";
 export default function SoundModal() {
   const { audioUnlocked, enableSound } = useSoundSystem();
 
-  if (audioUnlocked) return null; // hide once enabled
+  if (audioUnlocked) return null;
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[9999]">
