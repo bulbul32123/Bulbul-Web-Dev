@@ -7,14 +7,12 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
   const [showUpArrow, setShowUpArrow] = useState(false);
   const scrollContainerRef = useRef(null);
 
-  // Reset state whenever the modal opens
   useEffect(() => {
     if (isOpen) {
       setShowCheatCodes(showCodesDirectly);
     }
   }, [isOpen, showCodesDirectly]);
 
-  // Check if content is scrollable
   useEffect(() => {
     const checkScroll = () => {
       if (scrollContainerRef.current) {
@@ -24,7 +22,6 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
     };
 
     checkScroll();
-    // Add a small delay to ensure content is rendered
     const timer = setTimeout(checkScroll, 100);
 
     window.addEventListener('resize', checkScroll);
@@ -59,11 +56,8 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
 
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
-
-    // Show up arrow when scrolled down
     setShowUpArrow(scrollTop > 50);
 
-    // Hide down indicator when scrolled to bottom
     if (scrollTop + clientHeight >= scrollHeight - 10) {
       setShowScrollIndicator(false);
     } else if (scrollHeight > clientHeight) {
@@ -90,7 +84,6 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
         className="bg-white rounded-lg w-full max-w-xl relative"
         style={{ maxHeight: '90vh' }}
       >
-        {/* Fixed Header */}
         <div className="p-6 pb-4 border-b relative bg-white rounded-t-lg">
           <button
             className="absolute top-4 right-4 text-black cursor-pointer hover:text-red-500"
@@ -103,7 +96,6 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           </h2>
         </div>
 
-        {/* Scrollable Content - with visible scrollbar */}
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
@@ -152,7 +144,6 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           )}
         </div>
 
-        {/* Scroll Down Indicator */}
         {showScrollIndicator && (
           <button
             onClick={scrollDown}
@@ -162,7 +153,6 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           </button>
         )}
 
-        {/* Scroll Up Indicator */}
         {showUpArrow && (
           <button
             onClick={scrollUp}
