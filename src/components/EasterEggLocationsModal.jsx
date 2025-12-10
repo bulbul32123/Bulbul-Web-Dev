@@ -6,9 +6,7 @@ const EasterEggLocationsModal = ({ isOpen, locations = [], onClose }) => {
 
   return (
     <div className="w-full h-full">
-      {/* <div className="fixed w-full h-full inset-0 z-[50] flex items-center justify-center bg-black/50 p-4"></div> */}
       <div className="bg-white rounded-lg max-w-lg w-full max-h-[80vh] flex flex-col relative">
-        {/* Fixed Header */}
         <div className="flex-shrink-0 p-6 pb-4 border-b">
           <button
             className="absolute top-4 right-4 text-black cursor-pointer hover:text-red-500 transition-colors"
@@ -19,7 +17,6 @@ const EasterEggLocationsModal = ({ isOpen, locations = [], onClose }) => {
           <h2 className="text-2xl font-bold pr-8">Easter Egg Locations 🗺️</h2>
         </div>
 
-        {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-6 pt-4">
           <div className="space-y-3">
             {locations.map((loc) => (
