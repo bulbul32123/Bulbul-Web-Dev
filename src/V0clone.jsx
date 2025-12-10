@@ -19,7 +19,7 @@ import {
   Sun,
   Copy,
   Check,
-  Activity // Added Activity here to fix ReferenceError
+  Activity
 } from 'lucide-react';
 
 
