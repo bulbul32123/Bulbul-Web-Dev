@@ -124,7 +124,6 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Quick Links Section */}
             <div className="border-t border-neutral-800 py-8 flex  max-md:flex-col max-md:gap-5  items-center justify-between">
                 <motion.span
                     className="text-xl md:text-sm font-mono uppercase tracking-wider"
