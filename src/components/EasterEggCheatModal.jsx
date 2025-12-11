@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { IoClose, IoChevronDown, IoChevronUp } from "react-icons/io5";
 
-const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = false }) => {
+const EasterEggCheatModal = ({ isOpen, onClose, showCodesDirectly = false }) => {
   const [showCheatCodes, setShowCheatCodes] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [showUpArrow, setShowUpArrow] = useState(false);
@@ -33,7 +33,6 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
 
   const handleUnlock = () => {
     setShowCheatCodes(true);
-    onUnlock?.();
   };
 
   const scrollDown = () => {
@@ -83,7 +82,7 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
     { id: 2, description: "Click theme mode 5 times.", hint: "On the Sidebar" },
     { id: 3, description: "Click 'Interfaces' in the Hero section.", img: '/images/interface.png' },
     { id: 4, description: "Click '-' in hero.", img: '/images/Dash.png' },
-    { id: 5, description: "Click the music icon.",  hint: "On the Sidebar" },
+    { id: 5, description: "Click the music icon.", hint: "On the Sidebar" },
     { id: 6, description: "Click avatar.", hint: "Expand the avatar" },
     { id: 7, description: "Beat the shooting game.", hint: "Complete the shooting game" },
     { id: 8, description: "Find the star in menu.", hint: "You found it" },
@@ -92,7 +91,7 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4">
       <div
-        className="bg-white rounded-lg w-full max-w-xl relative"
+        className="bg-white rounded-lg w-full max-w-lg md:max-w-xl relative "
         style={{ maxHeight: '90vh' }}
       >
         <div className="p-6 pb-4 border-b relative bg-white rounded-t-lg">
@@ -102,7 +101,7 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           >
             <IoClose size={20} />
           </button>
-          <h2 className="text-2xl font-bold pr-8">
+          <h2 className="text-2xl font-bold pr-8 text-black">
             {showCheatCodes ? "Easter Egg Cheat Codes 🎮" : "You Found the Cheat Codes 🎉"}
           </h2>
         </div>
@@ -121,7 +120,7 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
             <div className="text-gray-700 space-y-2">
               <p>Congratulations! You've discovered the secret Easter egg menu!</p>
               <p>There are <b>8 hidden Easter eggs</b> scattered throughout my portfolio.</p>
-              <div className="mt-4 flex gap-3 flex-wrap">
+              <div className="mt-4 flex gap-2 md:gap-3 flex-wrap">
                 <button
                   onClick={onClose}
                   className="px-4 py-2 bg-lime-400 text-black rounded-md hover:bg-lime-500 transition"
