@@ -5,11 +5,13 @@ import useLenis from './hooks/useLenis';
 import Home from './pages/Home';
 import Curve from './components/Curve';
 import SidebarLayout from './components/SidebarLayout';
-import { EasterEggProvider } from './context/EasterEggContext';
+import { EasterEggProvider, useEasterEgg } from './context/EasterEggContext';
 import { SoundProvider } from './context/SoundContext';
 import { useRive, useStateMachineInput } from '@rive-app/react-canvas';
+import Menu from './components/Menu';
 
 function AnimatedRoutes() {
+  const { setIsMenuOpen, isMenuOpen, handleMenuOpen } = useEasterEgg()
   const location = useLocation();
   useLenis();
 
@@ -45,11 +47,15 @@ function AnimatedRoutes() {
     <div className="2xl:max-w-[1300px] mx-auto h-full w-full">
       {(isTransitioning || isLoading) && <Curve onComplete={onTransitionComplete} />}
       {!isTransitioning && !isLoading && (
-        <SidebarLayout>
-          <Routes location={displayLocation}>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </SidebarLayout>
+        <>
+
+          <Menu isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+          <SidebarLayout>
+            <Routes location={displayLocation}>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </SidebarLayout>
+        </>
       )}
     </div>
   );
