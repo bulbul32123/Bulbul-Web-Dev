@@ -2,7 +2,7 @@ import React from 'react'
 
 const StrapiIcon = () => {
     return (
-        <svg viewBox="0 -2 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+        <svg viewBox="0 -2 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
         <g fill="#8E75FF">
             <path d="M249.868148,1.42108547e-14 L81.6129672,1.42108547e-14 L81.6129672,84.3619834 L164.402564,84.3619834 C167.35201,84.3619834 169.744773,86.7547464 169.744773,89.7041929 L169.744773,171.351123 L255.210366,171.351123 L255.210366,5.3519758 C255.212951,3.93344238 254.651257,2.57212016 253.649118,1.56814827 C252.646978,0.56417638 251.286684,1.42108547e-14 249.868148,1.42108547e-14 Z">
 
