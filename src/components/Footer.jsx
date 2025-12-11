@@ -5,21 +5,26 @@ import { FaTwitterSquare } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, animateScroll as scroll } from 'react-scroll';
-import hoverSound from '/sounds/hover.MP3';
+import hoverSound2 from '/sounds/click2.MP3';
+
+
+
+import hoverSound3 from '/sounds/hover2.MP3';
 import useSound from 'use-sound';
 import clickSound from '/sounds/click.MP3';
 
 export default function Footer() {
     const [copied, setCopied] = useState(false);
-    const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
-    const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
+    const [playClick] = useSound(clickSound, { volume: 0.4, interrupt: true, soundEnabled: true, });
+    const [playHover3] = useSound(hoverSound3, { volume: 0.4, interrupt: true, soundEnabled: true, });
 
 
+    const [playHover2] = useSound(hoverSound2, { volume: 0.3, interrupt: true, soundEnabled: true, });
     const scrollToTop = () => {
         scroll.scrollToTop({ duration: 500, smooth: true });
     };
     const copyEmail = () => {
-        navigator.clipboard.writeText('alejandromejias.work@gmail.com');
+        navigator.clipboard.writeText('mdbulbulislamtheprogrammer@gmail.com');
         setCopied(true);
         playClick()
         setTimeout(() => setCopied(false), 1500);
@@ -39,8 +44,8 @@ export default function Footer() {
     ];
 
     return (
-        <footer className=" md:px-28 px-5 py-10" name="footer">
-            <div className="border-t border-neutral-800 flex max-md:flex-col max-md:gap-5  py-4 items-center justify-between relative">
+        <footer className=" md:px-28 px-5 py-10" id="footer">
+            <div className="border-t border-neutral-800 flex max-md:flex-col max-md:gap-5 py-4 items-center justify-between relative">
                 <motion.span
                     className="text-xl md:text-sm font-mono uppercase tracking-wider"
                     initial={{ opacity: 0, y: 10 }}
@@ -54,10 +59,10 @@ export default function Footer() {
                 <motion.button
                     onClick={copyEmail}
                     whileHover={hoverVariants.hover2}
-                    className="bg-lime-400 text-black px-8 py-4 rounded-full flex items-center gap-3 relative overflow-hidden"
+                    className="bg-lime-400 text-black px-8 py-4  cursor-pointer rounded-full flex items-center gap-3 relative overflow-hidden"
                     whileTap={hoverVariants.tap}
                     initial={{ opacity: 0, x: 10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: 0.1 }}
                 >
@@ -84,8 +89,6 @@ export default function Footer() {
                     </AnimatePresence>
                 </motion.button>
             </div>
-
-            {/* Connect Section */}
             <div className="border-t border-neutral-800 py-8 flex  max-md:flex-col max-md:gap-5  items-center justify-between">
                 <motion.span
                     className="text-xl md:text-sm font-mono uppercase tracking-wider"
@@ -115,7 +118,7 @@ export default function Footer() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: 0.2 + i * 0.1 }}
-                            onMouseEnter={playHover}
+                            onMouseEnter={playHover2}
                         >
                             {item.icon}
                             <span className=''>{item.label}</span>
@@ -142,7 +145,7 @@ export default function Footer() {
                             to={link.to}
                             smooth={true}
                             duration={500}
-                            onMouseEnter={playHover}
+                            onMouseEnter={playHover3}
                             className="flex items-center gap-2 font-mono uppercase text-sm tracking-wider cursor-pointer"
                         >
                             <motion.span
