@@ -10,9 +10,10 @@ import clickSound from '/sounds/click.MP3';
 
 export default function Avatar({ play, scrollToTop }) {
     const [openExpandAvatar, setOpenExpandAvatar] = useState(false);
+    const [showPlay, setShowPlay] = useState(true);
     const { addEasterEgg } = useEasterEgg();
-    const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true });
-    const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true });
+    const [playClick] = useSound(clickSound, { volume: 0.4, interrupt: true });
+    const [playHover] = useSound(hoverSound, { volume: 0.4, interrupt: true });
     const lastScrollY = useRef(0);
     const STATE_MACHINE_NAME = "State Machine 1";
 
@@ -48,7 +49,10 @@ export default function Avatar({ play, scrollToTop }) {
     }, [pokeLeft]);
     const handleAvatarExpand = () => {
         addEasterEgg('egg-avatar-detail', 'Exploring the Avatar');
-        play()
+        if (showPlay) {
+            play()
+            setShowPlay(false)
+        }
         setOpenExpandAvatar((pre) => !pre)
     }
 
