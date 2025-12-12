@@ -20,6 +20,7 @@ export default function SidebarLayout({ children }) {
   const [isAvatarVisible, setIsAvatarVisible] = useState(false);
   const [showBubble, setShowBubble] = useState(null);
   const [isMusicOn, setIsMusicOn] = useState(false);
+  const [ShowIsMusicOn, setShowIsMusicOn] = useState(true);
 
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
   const [devUnlocked, setDevUnlocked] = useState(false);
@@ -27,10 +28,10 @@ export default function SidebarLayout({ children }) {
   const { addEasterEgg, handleMenuOpen, isMenuOpen } = useEasterEgg();
   const [show, setShow] = useState(false);
 
-  const [play] = useSound(eggSound, { volume: 0.6, interrupt: true, soundEnabled: true, });
-  const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
-  const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
-  const [playClick2] = useSound(clickSound2, { volume: 0.5, interrupt: true, soundEnabled: true, });
+  const [play] = useSound(eggSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
+  const [playHover] = useSound(hoverSound, { volume: 0.4, interrupt: true, soundEnabled: true, });
+  const [playClick] = useSound(clickSound, { volume: 0.4, interrupt: true, soundEnabled: true, });
+  const [playClick2] = useSound(clickSound2, { volume: 0.4, interrupt: true, soundEnabled: true, });
   const lastScrollY = useRef(0);
   const audioRef = useRef(null);
   const menuRef = useRef();
@@ -116,11 +117,9 @@ export default function SidebarLayout({ children }) {
 
     if (isMusicOn) {
       audio.volume = 0;
-      audio.play().catch(() => { }); // avoid user gesture issues
-
-      // fade in
+      audio.play().catch(() => { });
       const fade = setInterval(() => {
-        if (audio.volume < 0.02) {
+        if (audio.volume < 0.03) {
           audio.volume += 0.01;
         } else {
           clearInterval(fade);
@@ -129,7 +128,6 @@ export default function SidebarLayout({ children }) {
 
       return () => clearInterval(fade);
     } else {
-      // fade out
       const fade = setInterval(() => {
         if (audio.volume > 0.001) {
           audio.volume -= 0.001;
@@ -143,6 +141,15 @@ export default function SidebarLayout({ children }) {
       return () => clearInterval(fade);
     }
   }, [isMusicOn]);
+
+  const handleMusicCelebration = () => {
+    addEasterEgg('Music-on', '🎭 You turn on the music');
+    setShow(true);
+    if (ShowIsMusicOn) {
+      play();
+      setShowIsMusicOn(false)
+    }
+  }
   return (
     <>
       {isAvatarVisible && <Avatar play={play} scrollToTop={scrollToTop} />}
@@ -175,7 +182,7 @@ export default function SidebarLayout({ children }) {
             </Button>
           </div>
 
-          <div className="select-none -rotate-90 pt-[2.7rem] text-end relative cursor-pointer text-sm" onClick={() => { setIsMusicOn(!isMusicOn); playClick(); }} onMouseEnter={playHover}>
+          <div className="select-none -rotate-90 pt-[2.7rem] text-end relative cursor-pointer text-sm" onClick={() => { setIsMusicOn(!isMusicOn); playClick(); handleMusicCelebration(); }} onMouseEnter={playHover}>
             <span className='text-gray-400 para'>Music</span>{" "}
             <button className='overflow-hidden text-left para'>
               <div className="relative cursor-pointer w-7 -mb-1 overflow-hidden text-sm uppercase !text-black">
@@ -198,83 +205,3 @@ export default function SidebarLayout({ children }) {
     </>
   );
 }
-
-
-
-
-
-
-
-// For bg1
-
-// useEffect(() => {
-//   const audio = audioRef.current;
-//   if (!audio) return;
-
-//   if (isMusicOn) {
-//     audio.volume = 0;
-//     audio.play().catch(() => { }); // avoid user gesture issues
-
-//     // fade in
-//     const fade = setInterval(() => {
-//       if (audio.volume < 0.2) {
-//         audio.volume += 0.01;
-//       } else {
-//         clearInterval(fade);
-//       }
-//     }, 120);
-
-//     return () => clearInterval(fade);
-//   } else {
-//     // fade out
-//     const fade = setInterval(() => {
-//       if (audio.volume > 0.15) {
-//         audio.volume -= 0.001;
-//       } else {
-//         audio.pause();
-//         audio.currentTime = 0;
-//         clearInterval(fade);
-//       }
-//     }, 100);
-
-//     return () => clearInterval(fade);
-//   }
-// }, [isMusicOn]);
-
-
-
-
-
-// useEffect(() => {
-//   const audio = audioRef.current;
-//   if (!audio) return;
-
-//   if (isMusicOn) {
-//     audio.volume = 0;
-//     audio.play().catch(() => { }); // avoid user gesture issues
-
-//     // fade in
-//     const fade = setInterval(() => {
-//       if (audio.volume < 0.05) {
-//         audio.volume += 0.01;
-//       } else {
-//         clearInterval(fade);
-//       }
-//     }, 120);
-
-//     return () => clearInterval(fade);
-//   } else {
-//     // fade out
-//     const fade = setInterval(() => {
-//       if (audio.volume > 0.07) {
-//         audio.volume -= 0.001;
-//       } else {
-//         audio.pause();
-//         audio.currentTime = 0;
-//         clearInterval(fade);
-//       }
-//     }, 100);
-
-//     return () => clearInterval(fade);
-//   }
-// }, [isMusicOn]);
