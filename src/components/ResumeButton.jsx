@@ -4,6 +4,8 @@ import TextReveal from '../components/animations/TextReveal';
 import Celebration from '../components/Celebration';
 export default function ResumeButton({ dashRef, playClick, setIsResumeVisible, isResumeVisible, play, addEasterEgg }) {
     const [show, setShow] = useState(false);
+    const [showPlay, setShowPlay] = useState(true);
+
     const handleClick = () => {
 
         const tl = gsap.timeline();
@@ -26,7 +28,10 @@ export default function ResumeButton({ dashRef, playClick, setIsResumeVisible, i
 
             setIsResumeVisible(true);
             setShow(true)
-            play()
+            if (showPlay) {
+                play()
+                setShowPlay(false)
+            }
             addEasterEgg('egg-resume', 'Just found the Hidden Resume');
         } else {
             window.open("/Bulbul'sResume.pdf", "_blank");
