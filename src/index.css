@@ -879,15 +879,6 @@ p.p {
     gap: 2em;
   }
 
-  .menu-close-icon {
-    width: 60px;
-    height: 60px;
-  }
-
-  .menu-close-icon p {
-    font-size: 40px;
-  }
-
   .menu-info {
     width: 100%;
     gap: 2em;
