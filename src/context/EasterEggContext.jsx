@@ -12,7 +12,7 @@ export const EasterEggProvider = ({ children }) => {
   const [foundEggs, setFoundEggs] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [playClick2] = useSound(clickSound2, { volume: 0.5, interrupt: true });
+  const [playClick2] = useSound(clickSound2, { volume: 0.4, interrupt: true });
   const handleMenuOpen = () => {
     playClick2()
     setIsMenuOpen((pre) => !pre)
