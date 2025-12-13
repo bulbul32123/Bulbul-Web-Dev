@@ -35,7 +35,7 @@ export default function Projects() {
     }, []);
 
     return (
-        <section className="py-32" name={'work'}>
+        <section className="py-32" id={'work'}>
             <div className="pl-7 mb-20">
                 <h2
                     ref={titleRef}
