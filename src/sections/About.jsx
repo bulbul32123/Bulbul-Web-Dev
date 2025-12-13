@@ -204,7 +204,7 @@ export default function About() {
 
   return (
     <>
-      <div className="w-full h-full -mt-28 xl:-mt-20 relative" name='about'>
+      <div className="w-full h-full -mt-28 xl:-mt-20 relative" id='about'>
         <AboutText sectionRef={sectionRef} boxRef={boxRef} textRef={textRef} titleRef={titleRef} titleFrontRef={titleFrontRef} para1Ref={para1Ref} para2Ref={para2Ref} />
       </div>
       <div className="">
