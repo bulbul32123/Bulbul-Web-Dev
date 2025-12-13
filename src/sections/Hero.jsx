@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
 import useSound from 'use-sound';
 import eggSound from '/sounds/succes.MP3';
+import hoverSound from '/sounds/hover2.MP3';
 import clickSound from '/sounds/click.MP3';
 import { useEasterEgg } from '../context/EasterEggContext';
 
@@ -20,9 +21,10 @@ export default function Hero() {
   const [isResumeVisible, setIsResumeVisible] = useState(false);
   const { addEasterEgg } = useEasterEgg();
   const [show, setShow] = useState(false);
-  const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
-
-  const [playClick] = useSound(clickSound, { volume: 0.5, interrupt: true });
+  const [showPlay, setShowPlay] = useState(true);
+  const [play] = useSound(eggSound, { volume: 0.5, interrupt: true });
+  const [playHover] = useSound(hoverSound, { volume: 0.4, interrupt: true, soundEnabled: true, });
+  const [playClick] = useSound(clickSound, { volume: 0.4, interrupt: true });
   const [wordIndex, setWordIndex] = useState(0);
 
   const handleDoubleClick = () => {
@@ -30,7 +32,10 @@ export default function Hero() {
     setWordIndex(nextIndex);
     playClick();
     setShow(true)
-    play()
+    if (showPlay) {
+      play()
+      setShowPlay(false)
+    }
     addEasterEgg("egg-cycle-word", `Discovered Hidden Meaning`);
   };
 
@@ -69,14 +74,14 @@ export default function Hero() {
   return (
     <>
       <Celebration show={show} />
-      <div className="flex flex-col justify-center items-center h-screen w-full text-center" name={'home'}>
+      <div className="flex flex-col justify-center items-center h-screen w-full text-center" id={'home'}>
         <h1 className="md:text-[4rem] xl:text-[5rem] text-5xl sm:text-6xl font-bold mb-5 uppercase md:px-40 px-5 flex flex-wrap justify-center gap-x-2">
           <TextReveal>I Build</TextReveal>
 
           <TextReveal>
             <span
               className="bg-[#caef96]  text-black  px-3 select-none rounded-2xl cursor-pointer"
-              onClick={handleDoubleClick}
+              onClick={handleDoubleClick} onMouseEnter={() => playHover()}
             >
               {words[wordIndex]}
             </span>
@@ -84,11 +89,11 @@ export default function Hero() {
 
           <TextReveal>That Don’t Just</TextReveal>
           <TextReveal>Impress</TextReveal>
-<div className="z-20">
+          <div className="z-20">
 
-          <ResumeButton dashRef={dashRef} playClick={playClick} setIsResumeVisible={setIsResumeVisible} isResumeVisible={isResumeVisible} play={play} addEasterEgg={addEasterEgg} />
+            <ResumeButton dashRef={dashRef} playClick={playClick} setIsResumeVisible={setIsResumeVisible} isResumeVisible={isResumeVisible} play={play} addEasterEgg={addEasterEgg} />
 
-</div>
+          </div>
           <TextReveal>They</TextReveal>
           <TextReveal>
             <span className="highlighted-text text-black ">Perform</span>
@@ -103,7 +108,7 @@ export default function Hero() {
           className="md:w-[37rem] sm:w-[34rem] max-sm:px-10 2xl:text-base pb-5 text-sm text-gray-700 dark:text-gray-300 text-center"
         />
       </div>
-      
+
     </>
   );
 }
