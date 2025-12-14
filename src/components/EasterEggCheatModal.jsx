@@ -64,17 +64,28 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
       setShowScrollIndicator(true);
     }
   };
+  useEffect(() => {
+    if (!showCheatCodes) {
+      setShowUpArrow(false);
+      setShowScrollIndicator(false);
+
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = 0;
+      }
+    }
+  }, [showCheatCodes]);
+
 
   if (!isOpen) return null;
 
   const cheatCodes = [
-    { id: 1, description: "Click Bulbul 5 times.", hint: "Top left corner" },
-    { id: 2, description: "Click theme modal 5 times.", hint: "Theme switcher" },
-    { id: 3, description: "Click 'Interfaces' in the Hero section.", hint: "Hero glow" },
-    { id: 4, description: "Click '--' in hero.", hint: "The dash" },
-    { id: 5, description: "Click the music icon.", hint: "Melody" },
-    { id: 6, description: "Click avatar.", hint: "Profile picture" },
-    { id: 7, description: "Beat the game.", hint: "Skill time" },
+    { id: 1, description: "Click `Bulbul` 5 times.", hint: "Top left corner" },
+    { id: 2, description: "Click theme mode 5 times.", hint: "On the Sidebar" },
+    { id: 3, description: "Click 'Interfaces' in the Hero section.", img: '/images/interface.png' },
+    { id: 4, description: "Click '-' in hero.", img: '/images/Dash.png' },
+    { id: 5, description: "Click the music icon.",  hint: "On the Sidebar" },
+    { id: 6, description: "Click avatar.", hint: "Expand the avatar" },
+    { id: 7, description: "Beat the shooting game.", hint: "Complete the shooting game" },
     { id: 8, description: "Find the star in menu.", hint: "You found it" },
   ];
 
@@ -128,14 +139,14 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           ) : (
             <div className="space-y-4 pb-4">
               {cheatCodes.map((code) => (
-                <div key={code.id} className="border-l-4 border-purple-500 pl-4 py-2 hover:bg-purple-50 transition-colors rounded">
+                <div key={code.id} className="border-l-4 border-green-500 pl-4 py-2 hover:bg-purple-50 transition-colors rounded">
                   <div className="flex items-start gap-3">
                     <span className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
                       {code.id}
                     </span>
                     <div>
                       <p className="font-bold text-gray-800">{code.description}</p>
-                      <p className="text-xs italic mt-1 text-gray-500">💡 {code.hint}</p>
+                      <div className="flex gap-1 text-xs italic mt-1 text-gray-500">💡 {code.img ? <img src={`${code.img}`} className="h-4 w-auto object-cover object-center" alt={`${code.description}`} /> : code.hint}</div>
                     </div>
                   </div>
                 </div>
@@ -144,7 +155,7 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           )}
         </div>
 
-        {showScrollIndicator && (
+        {showCheatCodes && showScrollIndicator && (
           <button
             onClick={scrollDown}
             className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black text-white rounded-full p-2 shadow-lg hover:bg-gray-800 transition animate-bounce cursor-pointer z-10"
@@ -153,7 +164,7 @@ const EasterEggCheatModal = ({ isOpen, onClose, onUnlock, showCodesDirectly = fa
           </button>
         )}
 
-        {showUpArrow && (
+        {showCheatCodes && showUpArrow && (
           <button
             onClick={scrollUp}
             className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-black text-white rounded-full p-2 shadow-lg hover:bg-gray-800 transition animate-bounce cursor-pointer z-10"
