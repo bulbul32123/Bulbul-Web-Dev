@@ -10,7 +10,6 @@ import eggSound from '/sounds/succes.MP3';
 import Celebration from "./Celebration";
 import EasterEggCheatModal from "./EasterEggCheatModal";
 import { useLockBodyScroll } from "./useLockBodyScroll";
-import EasterEggLocationsModal from "./EasterEggLocationsModal";
 
 const menuLinks = [
     { to: "home", label: "HOME" },
@@ -98,11 +97,10 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
     return (
         <>
             <Celebration show={show} />
-            {/* Cheat Codes Modal */}
             <EasterEggCheatModal
                 isOpen={showCheatModal}
                 onClose={() => setShowCheatModal(false)}
-                onUnlock={handleUnlockCodes} // unlock triggers locations modal
+                onUnlock={handleUnlockCodes} 
             />
 
             <div className="menu-container overflow-y-hidden" ref={container}>
