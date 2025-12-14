@@ -25,7 +25,6 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
     const [show, setShow] = useState(false);
     const [playHover] = useSound(hoverSound, { volume: 0.5, interrupt: true, soundEnabled: true, });
     const [showCheatModal, setShowCheatModal] = useState(false);
-    const [showLocationsModal, setShowLocationsModal] = useState(false);
 
     const [play] = useSound(eggSound, { volume: 0.6, interrupt: true });
     const container = useRef();
@@ -79,24 +78,13 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
     }, [isMenuOpen]);
 
 
-    const cheatCodes = [
-        { id: 1, title: "The Name Game", description: "Click Bulbul 5 times.", hint: "Top left corner" },
-        { id: 2, title: "Theme Hunter", description: "Click theme modal 5 times.", hint: "Theme switcher" },
-        { id: 3, title: "Interface Master", description: "Click 'Interfaces'.", hint: "Hero glow" },
-        { id: 4, title: "Resume Secret", description: "Click '--' in hero.", hint: "The dash" },
-        { id: 5, title: "Music Lover", description: "Click the music icon.", hint: "Melody" },
-        { id: 6, title: "Avatar Expansion", description: "Click avatar.", hint: "Profile picture" },
-        { id: 7, title: "Game Master", description: "Beat the game.", hint: "Skill time" },
-        { id: 8, title: "Hidden Star", description: "Find the star in menu.", hint: "You found it" },
-    ];
     const handleHiddenEasterEggs = () => {
         if (show) {
-            showLocationsModal(true);
+            setShowCheatModal(true);
         } else {
-            setShow(true);
             play();
+            setShow(true);
             addEasterEgg("hidden-cheat-code", `You found the hidden cheat code`);
-
             setTimeout(() => {
                 setShowCheatModal(true);
             }, 2000);
@@ -115,13 +103,6 @@ const Menu = ({ isMenuOpen, handleMenuOpen }) => {
                 isOpen={showCheatModal}
                 onClose={() => setShowCheatModal(false)}
                 onUnlock={handleUnlockCodes} // unlock triggers locations modal
-            />
-
-            {/* Locations Modal */}
-            <EasterEggLocationsModal
-                isOpen={showLocationsModal}
-                locations={cheatCodes}
-                onClose={() => setShowLocationsModal(false)}
             />
 
             <div className="menu-container overflow-y-hidden" ref={container}>
