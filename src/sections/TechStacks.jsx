@@ -161,7 +161,7 @@ export default function TechStacks() {
         <motion.section
             className="h-full w-full dark:bg-white bg-black py-20 relative overflow-hidden"
             initial="hidden"
-            whileInView="visible" name="skills"
+            whileInView="visible" id="skills"
         >
 
             <div className="w-full relative z-10">
